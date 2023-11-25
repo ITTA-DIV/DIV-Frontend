@@ -1,27 +1,95 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+@font-face {
+  font-family: 'PretendardBold';
+  src: url('../../public/fonts/Pretendard-Bold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+@font-face {
+  font-family: 'PretendardBlack';
+  src: url('../../public/fonts/Pretendard-Black.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PretendardExtraBold';
+  src: url('../../public/fonts/Pretendard-ExtraBold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PretendardExtraLight';
+  src: url('../../public/fonts/Pretendard-ExtraLight.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PretendardLight';
+  src: url('../../public/fonts/Pretendard-Light.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PretendardMedium';
+  src: url('../../public/fonts/Pretendard-Medium.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PretendardRegular';
+  src: url('../../public/fonts/Pretendard-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PretendardSemiBold';
+  src: url('../../public/fonts/Pretendard-SemiBold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PretendardThin';
+  src: url('../../public/fonts/Pretendard-Thin.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  margin: 0;
+  line-height: normal;
+}
+
+:root {
+
+  /* font sizes */
+  --font-size-mini: 15px;
+  --font-size-2xs: 11px;
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-22xl: 41px;
+
+  /* Colors */
+  --color-darkturquoise: #3bc1c6;
+  --color-white: #fff;
+  --color-black: #000;
+  --color-gray-100: rgba(255, 255, 255, 0.35);
+  --color-gray-200: rgba(255, 255, 255, 0.7);
+  --color-gainsboro: #d9d9d9;
+  --color-dimgray: #6b6b6b;
+
+  /* Border radiuses */
+  --br-6xs: 7px;
+  --br-2xs: 11px;
+  --br-23xl: 42px;
+  --br-3xs: 10px;
+  --br-21xl: 40px;
+  --br-9981xl: 10000px;
 }
