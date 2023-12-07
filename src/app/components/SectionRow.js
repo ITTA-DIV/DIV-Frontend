@@ -113,7 +113,7 @@ const ContentRow = styled.div`
     display: none;
   }
   
-
+//
   /* scroll-behavior: smooth; */
 `;
 
