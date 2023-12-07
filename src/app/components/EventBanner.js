@@ -5,7 +5,7 @@ const EventBanner = () => {
     
   return (
     <Frame>
-        <Image src = "/images/EventImage.png"></Image>
+        <Image ></Image>
         <Foreground></Foreground>
         <InfoFrame>
             <EventTitle>{"뚝섬 재사용 장터\n이벤트"}</EventTitle>
@@ -25,8 +25,9 @@ const Frame = styled.div `
 
 const Image = styled.img `
   position: absolute;
-  height: 100%;
   width: 100%;
+  height: 100%;
+  background: url(/images/EventImage.png) center/cover no-repeat;
 `;
 
 const InfoFrame = styled.div `

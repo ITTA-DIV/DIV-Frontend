@@ -12,9 +12,6 @@ const Header = () => {
       <Tab>
         <TabText>홈페이지</TabText>
         <TabText>마이페이지</TabText>
-        <TabText>포럼</TabText>
-        <TabText>게시판</TabText>
-        <TabText>쪽지보관함</TabText>
         <TabText>등록하기</TabText>
       </Tab>
       <UserFrame>
@@ -33,6 +30,7 @@ const Frame = styled.div `
   height: 65px;
   width: 100%;
   background-color: white;
+  white-space: nowrap;
 `;
 
 const Logo = styled.img`
@@ -62,6 +60,7 @@ const SearchField = styled.div`
   flex-direction: row;
   align-items: center;
   margin-left: 29px;
+  min-width: 300px;
   width: 399px;
   height: 39px;
   border-radius: 50px;
@@ -85,12 +84,11 @@ const SearchPlaceHolder = styled.div`
 
 
 const UserFrame = styled.div`
-position: absolute;
+position: relative;
 display: flex;
 flex-direction: row;
 align-items: center;
 flex-direction: row;
-right: 47px;
 gap:11px;
 `;
 
@@ -98,6 +96,7 @@ const ProfilePic = styled.img`
 position: relative;
 width: 30px;
 height: 30px;
+margin-left: 630px;
 border-radius: 30px;
 `;
 

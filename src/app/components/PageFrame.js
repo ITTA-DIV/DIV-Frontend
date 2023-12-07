@@ -23,6 +23,7 @@ const PageSection = styled.div `
 `;
 
 const Frame = styled.div `
+position: relative;
    display: flex;
    flex-direction: column;
    align-items: center;

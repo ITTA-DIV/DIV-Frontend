@@ -1,9 +1,24 @@
 "use client"
 import styled from "styled-components";
+import {
+	Motion,
+	Spring,
+	GlobalController,
+	GuageController,
+	Tween,
+	Easetype,
+} from "@/CorgiUI/src";
+
+
 
 const ProjectPost = ({title,category,date,deadline,poster_path}) => {
   return (
+    <Motion.div
+    onMouseOver={(event,ref) => Spring.scaleMotion(1.05,1.05,0,[15, 0.27, 55],ref,"change")}
+    onMouseLeave = {(event,ref) => Spring.scaleMotion(1,1,0,[15, 0.27, 55],ref,"change")}
+    >
     <Frame>
+      <Inner>
       <PosterImg alt="" src={poster_path} />
       <ForegroundFrame>
         <InfoFrame>
@@ -23,14 +38,17 @@ const ProjectPost = ({title,category,date,deadline,poster_path}) => {
         <DeadLineText>{"마감까지 D-"+deadline}</DeadLineText>
       </DeadLineFrame>
       <Outline />
+      </Inner>
     </Frame>
+    </Motion.div>
   );
 };
 
 const PosterImg = styled.img`
   position: absolute;
-  height: 70.51%;
   width: 100%;
+  height: 70%;
+  background: url(poster_path);
   object-fit: cover;
 `;
 const Line = styled.div`
@@ -95,7 +113,7 @@ const ForegroundFrame = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 49.06%;
+  height: 135.89px;
   width: 100%;
   bottom: 0;
   background: linear-gradient(
@@ -124,19 +142,26 @@ const DeadLineFrame = styled.div`
 `;
 const Outline = styled.div`
   position: absolute;
+  width: 96.6%;
   height: 100%;
-  width: 100%;
   border-radius: var(--br-6xs);
   border: 4px solid var(--color-darkturquoise);
-  box-sizing: border-box;
 `;
 const Frame = styled.div`
 position: relative;
   border-radius: var(--br-6xs);
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
+  display: flex;
+  overflow: visible;
+`;
+
+const Inner = styled.div`
+  position: relative;
   width: 226px;
   height: 277px;
+  border-radius: var(--br-6xs);
   overflow: hidden;
+  
 `;
 
 export default ProjectPost;
