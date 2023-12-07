@@ -49,7 +49,7 @@ const GlobalController = GlobalControllerInstance.handleMotion;
 const Motion = {};
 
 htmlElements.forEach((element) => {
-  Motion[element] = forwardRef((props, ref) => {
+  Motion[element] = forwardRef<HTMLElement>((props, ref) => {
     return (
       <MotionComponent {...props} ref={ref} tag={motion[element]}/>
     );
