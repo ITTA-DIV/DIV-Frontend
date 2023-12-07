@@ -1,7 +1,7 @@
 import React,{useRef,useEffect,forwardRef} from 'react';
 
 
-  const HtmlImage = forwardRef<HTMLImageElement>((props, ref) => {
+  const HtmlImage = forwardRef((props, ref) => {
     const htmlref = useRef(null);
 
     useEffect(() => {
@@ -22,5 +22,5 @@ import React,{useRef,useEffect,forwardRef} from 'react';
     />
   );
 })
-
+HtmlImage.displayName = "HtmlImage"
 export default HtmlImage;

@@ -49,11 +49,13 @@ const GlobalController = GlobalControllerInstance.handleMotion;
 const Motion = {};
 
 htmlElements.forEach((element) => {
-  Motion[element] = forwardRef<HTMLElement>((props, ref) => {
+  Motion[element] = forwardRef((props, ref) => {
     return (
       <MotionComponent {...props} ref={ref} tag={motion[element]}/>
     );
   });
+
+  Motion[element].displayName = "Motion"+element;
 });
 
 //Define Spring

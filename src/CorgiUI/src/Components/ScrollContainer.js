@@ -3,7 +3,7 @@ import { Motion,Spring } from "../index";
 import React, { useRef, useState, useCallback, useLayoutEffect,forwardRef,useEffect } from "react"
 import { vhToPx} from "../Util/Converter";
 
-const ScrollContainer = forwardRef<HTMLElement>((props, ref) => {
+const ScrollContainer = forwardRef((props, ref) => {
   const scrollRef = useRef(null)
   const [pageHeight, setPageHeight] = useState(0);
 
@@ -46,4 +46,5 @@ const ScrollContainer = forwardRef<HTMLElement>((props, ref) => {
   );
 });
 
+ScrollContainer.displayName = "ScrollContainer"
 export default ScrollContainer;
