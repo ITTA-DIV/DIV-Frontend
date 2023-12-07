@@ -1,7 +1,7 @@
 import React,{useRef,useEffect,forwardRef} from 'react';
 
 
-  const HtmlImage = forwardRef((props, ref) => {
+  const HtmlImage = forwardRef<HTMLImageElement>((props, ref) => {
     const htmlref = useRef(null);
 
     useEffect(() => {

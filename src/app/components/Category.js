@@ -21,10 +21,11 @@ const Category = () => {
         {categoryList.map((category,index)=>
         {return(
           <Motion.div
+          key = {index}
           onMouseOver={(event,ref) => Spring.scaleMotion(1.05,1.05,0,[15, 0.27, 55],ref,"change")}
           onMouseLeave = {(event,ref) => Spring.scaleMotion(1,1,0,[15, 0.27, 55],ref,"change")}
           >
-         <Content key = {index}>
+         <Content>
            <Image src = {"/images/Category"+(index+1)+".jpg"}></Image>
             <Name>{category}</Name>
         </Content>
