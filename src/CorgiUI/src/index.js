@@ -56,8 +56,9 @@ htmlElements.forEach((element) => {
   });
 
   Motion[element].displayName = "Motion"+element;
-  MotionComponent.displayName = "MotionComponent"
 });
+
+MotionComponent.displayName = "MotionComponent";
 
 //Define Spring
 
