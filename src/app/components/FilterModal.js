@@ -119,7 +119,7 @@ const BannerFrame = styled.div`
   background-color: var(--color-darkturquoise);
 `;
 
-const BannerText = styled.text`
+const BannerText = styled.p`
   position: relative;
   font-family: "PretendardBold";
   font-size: 20px;
@@ -144,44 +144,6 @@ const TagLineTitle = styled.div`
   width: 991px;
 `;
 
-const TagLineTags = styled.div`
-  position: relative;
-  width: 991px;
-`;
-
-const FilterFrame = styled.div`
-  position: relative;
-  display: flex;
-  justify-content: center;
-  height: 38px;
-  padding-left: 23px;
-  padding-right: 12px;
-  background-color: #3bc1c6;
-  border-radius: 8px;
-`;
-
-const FilterContentFrame = styled.div`
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 15px;
-`;
-
-const FilterText = styled.div`
-  position: relative;
-  font-family: "PretendardSemiBold";
-  color: white;
-  font-size: 20px;
-`;
-
-const FilterSelection = styled.img`
-  position: relative;
-  width: 15px;
-  height: 15px;
-  background: url(/images/ic_Selection_Unactive.png) center/cover no-repeat;
-`;
-
 const FiltersFrame = styled.div`
   position: relative;
   display: flex;
@@ -192,7 +154,7 @@ const FiltersFrame = styled.div`
   margin-top: 16px;
 `;
 
-const Title = styled.text`
+const Title = styled.p`
   position: relative;
   margin-left: 1px;
   font-family: "PretendardBold";

@@ -4,10 +4,8 @@ const initialState = {
 };
 
 const rootReducer = (state = initialState, action) => {
-  console.log("Reduce " +action.type)
   switch (action.type) {
     case ADD_FILTER:
-      console.log("current filter is "+[...state.currentFilters, action.payload]);
       return {
         ...state,
         currentFilters:  [...state.currentFilters, action.payload],

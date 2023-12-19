@@ -3,14 +3,17 @@ import styled from "styled-components";
 
 const EventBanner = () => {
     
+  const detailButtonImg = "images/DetailButton.png"
+  const eventImg = "images/EventImage.png"
+
   return (
     <Frame>
-        <Image ></Image>
+        <Image src = {eventImg}></Image>
         <Foreground></Foreground>
         <InfoFrame>
             <EventTitle>{"뚝섬 재사용 장터\n이벤트"}</EventTitle>
             <EventSubTitle>{"Lorem Ipsum is simply dummy text of the printing and type\nsetting Industry Lorem Ipsum"}</EventSubTitle>
-            <EventDetailButton src = "/images/DetailButton.png"></EventDetailButton>
+            <EventDetailButton src = {detailButtonImg}></EventDetailButton>
         </InfoFrame>
     </Frame>
   );
@@ -27,7 +30,7 @@ const Image = styled.img `
   position: absolute;
   width: 100%;
   height: 100%;
-  background: url(/images/EventImage.png) center/cover no-repeat;
+  background: center/cover no-repeat;
 `;
 
 const InfoFrame = styled.div `
@@ -40,14 +43,14 @@ const InfoFrame = styled.div `
   width: 300px;
 `;
 
-const EventTitle = styled.text `
+const EventTitle = styled.p `
   position: relative;
   font-family: "PretendardBold";
   font-size: 40px;
   color: white;
 `;
 
-const EventSubTitle = styled.text `
+const EventSubTitle = styled.p `
   position: relative;
   font-family: "PretendardSemiBold";
   font-size: 10px;

@@ -11,8 +11,6 @@ import {
 
 import LikeButton from "./LikeButton";
 
-import ic_Heart from "../../../public/images/heart.png"
-
 const memberImage = "images/Member.png"
 
 const ProjectPost = ({title,category,date,deadline,poster_path}) => {
@@ -55,7 +53,6 @@ const PosterImg = styled.img`
   position: absolute;
   width: 100%;
   height: 70%;
-  background: url(poster_path);
   object-fit: cover;
 `;
 const Line = styled.div`
@@ -66,12 +63,12 @@ const Line = styled.div`
   background-color: white;
 `;
 
-const Category = styled.text`
+const Category = styled.p`
   font-size: 9px;
   font-family: "PretendardMedium";
 `;
 
-const Title = styled.text`
+const Title = styled.p`
   font-size: 15px;
   font-family: "PretendardBold";
 `;
@@ -142,7 +139,7 @@ const ForegroundFrame = styled.div`
     #3bc1c6
   );
 `;
-const DeadLineText = styled.text`
+const DeadLineText = styled.p`
   font-size: 15px;
   font-family: "PretendardMedium";
   color: white;

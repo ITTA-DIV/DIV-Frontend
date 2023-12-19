@@ -6,6 +6,10 @@ import { addFilter} from "../actions/Actions";
 import { useDispatch } from "react-redux";
 const Header = () => {
 
+  const logoImg = "images/LogoText.png"
+  const magnifierImg = "images/Magnifier_Emoji.png"
+  const memberImg = "images/Member.png"
+  
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -18,11 +22,12 @@ const Header = () => {
     }
   }
 
+
   return (
     <Frame>
-      <Logo src="/images/LogoText.png"></Logo>
+      <Logo src={logoImg}></Logo>
       <SearchFieldFrame>
-        <SearchLogo src = "/images/Magnifier_Emoji.png"></SearchLogo>
+        <SearchLogo src = {magnifierImg}></SearchLogo>
         <SearchField placeholder = {"지금 핫한 공모전 찾아보기!!"} onChange={(event) => setInputText(event.target.value)} onKeyDown={(event) => handleSubmit(event)} ></SearchField>
       </SearchFieldFrame>
       <Tab>
@@ -31,7 +36,7 @@ const Header = () => {
         <TabText>등록하기</TabText>
       </Tab>
       <UserFrame>
-        <ProfilePic src = "/images/Member.png"></ProfilePic>
+        <ProfilePic src = {memberImg}></ProfilePic>
         <UserName>이명준</UserName>
       </UserFrame>
     </Frame>
@@ -64,7 +69,7 @@ const Tab = styled.div`
   flex-direction: row;
 `;
 
-const TabText = styled.text`
+const TabText = styled.p`
 position: relative;
 font-family: "PretendardBold";
 font-size: 15;
@@ -136,7 +141,7 @@ margin-left: 630px;
 border-radius: 30px;
 `;
 
-const UserName = styled.text`
+const UserName = styled.p`
 position: relative;
 font-family: "PretendardBold";
 font-size: 15px;

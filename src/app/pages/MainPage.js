@@ -11,8 +11,8 @@ const MainPage = () => {
         <Category></Category>
         <SectionRows>
         <SectionRow data = {events.results.dedlines} title = {"마감임박 행사들"} subtitle ={"마감이 얼마 안남았어요!"}></SectionRow>
-        <SectionRow data = {events.results.new} title = {"신규 행사들"} subtitle ={"새로생긴 행사들을 모았어요!!"}></SectionRow>
-        <SectionRow data = {events.results.now} title = {"주목해야할 행사들"} subtitle ={"중요한 행사들만 엄선했어요"}></SectionRow>
+        {/* <SectionRow data = {events.results.new} title = {"신규 행사들"} subtitle ={"새로생긴 행사들을 모았어요!!"}></SectionRow>
+        <SectionRow data = {events.results.now} title = {"주목해야할 행사들"} subtitle ={"중요한 행사들만 엄선했어요"}></SectionRow> */}
         </SectionRows>
    </Frame>
   );

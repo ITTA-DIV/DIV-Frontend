@@ -7,15 +7,19 @@ import React, { useState } from "react";
 import { events } from "../API";
 import Filter from "../components/Filter";
 const SearchPage = () => {
+
+  const bannerImg = "images/SearchBanner.png";
+
   const tempdata = events.results.dedlines;
   const resultNum = 122;
   const currentFilters = useSelector((state) => state.currentFilters);
 
   const [isModal, setisModal] = useState(false);
+
   return (
     <Frame>
       <Banner>
-        <BannerImage></BannerImage>
+        <BannerImage src = {bannerImg}></BannerImage>
         <BannerText>{resultNum}개의 공모전이 발견되었어요!</BannerText>
       </Banner>
       <ResultGrid>
@@ -72,7 +76,6 @@ const BannerImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  background: url(/images/SearchBanner.png) center/cover no-repeat;
 `;
 
 const BannerText = styled.div`

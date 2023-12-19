@@ -78,7 +78,7 @@ const Frame = styled.div`
   flex-direction: column;
 `;
 
-const Title = styled.text`
+const Title = styled.p`
   position: relative;
   margin-left: 1px;
   font-family: "PretendardBold";
@@ -90,7 +90,7 @@ const Title = styled.text`
   }
 `;
 
-const SubTitle = styled.text`
+const SubTitle = styled.p`
   position: relative;
   margin-left: 3px;
   font-family: "PretendardSemiBold";

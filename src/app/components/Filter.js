@@ -13,39 +13,6 @@ const Filter = ({ title }) => {
     dispatch(removeFilter(title));
   };
 
-  const FilterFrame = styled.div`
-    position: relative;
-    display: flex;
-    justify-content: center;
-    height: 38px;
-    padding-left: 23px;
-    padding-right: 12px;
-    background-color: #3bc1c6;
-    border-radius: 8px;
-  `;
-
-  const FilterContentFrame = styled.div`
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 15px;
-  `;
-
-  const FilterText = styled.div`
-    position: relative;
-    font-family: "PretendardSemiBold";
-    color: white;
-    font-size: 20px;
-  `;
-
-const FilterCloseButton = styled.img`
-  position: relative;
-  width: 15px;
-  height: 15px;
-  background: center/cover no-repeat;
-`;
-
   return (
     <FilterFrame onClick={handleClick}>
       <FilterContentFrame>
@@ -55,5 +22,38 @@ const FilterCloseButton = styled.img`
     </FilterFrame>
   );
 };
+
+const FilterFrame = styled.div`
+position: relative;
+display: flex;
+justify-content: center;
+height: 38px;
+padding-left: 23px;
+padding-right: 12px;
+background-color: #3bc1c6;
+border-radius: 8px;
+`;
+
+const FilterContentFrame = styled.div`
+position: relative;
+display: flex;
+flex-direction: row;
+align-items: center;
+gap: 15px;
+`;
+
+const FilterText = styled.div`
+position: relative;
+font-family: "PretendardSemiBold";
+color: white;
+font-size: 20px;
+`;
+
+const FilterCloseButton = styled.img`
+position: relative;
+width: 15px;
+height: 15px;
+background: center/cover no-repeat;
+`;
 
 export default Filter;
