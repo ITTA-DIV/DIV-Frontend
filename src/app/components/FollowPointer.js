@@ -1,3 +1,4 @@
+"use client"
 import React, { useRef, useEffect } from "react";
 import { Motion, Spring } from "@/CorgiUI/src";
 import styled from "styled-components";

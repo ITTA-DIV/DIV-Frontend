@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import React, { useState } from "react";
 import { events } from "../API";
 import Filter from "../components/Filter";
-const SearchPage = ({ data }) => {
+const SearchPage = () => {
   const tempdata = events.results.dedlines;
   const resultNum = 122;
   const currentFilters = useSelector((state) => state.currentFilters);
