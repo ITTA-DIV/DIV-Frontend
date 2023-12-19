@@ -1,31 +1,28 @@
 "use client"
 import styled from "styled-components";
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import React,{useState} from "react";
 import { addFilter} from "../actions/Actions";
-import { useDispatch } from "react-redux";
+import { useRouter } from 'next/navigation';
 const Header = () => {
 
   const logoImg = "images/LogoText.png"
   const magnifierImg = "images/Magnifier_Emoji.png"
   const memberImg = "images/Member.png"
-  
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const router = useRouter();
 
   const [inputText, setInputText] = useState("");
   
   const handleSubmit = (event) =>{
     if(event.key === "Enter") {
-      dispatch(addFilter("검색어 : "+inputText));
-      navigate("/Search");
+      router.push("/searchpage")
     }
   }
 
 
   return (
     <Frame>
-      <Logo src={logoImg}></Logo>
+      <Logo src={logoImg} onClick={() => router.push("/mainpage")}></Logo>
       <SearchFieldFrame>
         <SearchLogo src = {magnifierImg}></SearchLogo>
         <SearchField placeholder = {"지금 핫한 공모전 찾아보기!!"} onChange={(event) => setInputText(event.target.value)} onKeyDown={(event) => handleSubmit(event)} ></SearchField>

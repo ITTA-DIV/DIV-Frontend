@@ -1,6 +1,7 @@
-import { ADD_FILTER, REMOVE_FILTER } from "../actions/Actions";
+import { ADD_FILTER, REMOVE_FILTER,CHANGE_URL } from "../actions/Actions";
 const initialState = {
   currentFilters: [],
+  currentUrl: "/mainpage"
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -8,14 +9,18 @@ const rootReducer = (state = initialState, action) => {
     case ADD_FILTER:
       return {
         ...state,
-        currentFilters:  [...state.currentFilters, action.payload],
+        currentFilters: [...state.currentFilters, action.payload],
       };
     case REMOVE_FILTER:
       return {
         ...state,
         currentFilters: state.currentFilters.filter(
-          filterValue => filterValue !== action.payload
+          (filterValue) => filterValue !== action.payload
         ),
+      };
+    case CHANGE_URL:
+      return {
+        currentUrl: action.payload,
       };
     default:
       return state;

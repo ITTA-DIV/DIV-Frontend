@@ -1,11 +1,12 @@
 "use client";
 import styled from "styled-components";
-import ProjectPost from "../components/ProjectPost";
-import FilterModal from "../components/FilterModal";
+import Filter from "@/app/components/Filter";
+import ProjectPost from "@/app/components/ProjectPost";
+import FilterModal from "@/app/components/FilterModal";
+import { events } from "@/app/API";
 import { useSelector } from "react-redux";
 import React, { useState } from "react";
-import { events } from "../API";
-import Filter from "../components/Filter";
+import Header from "../components/Header";
 const SearchPage = () => {
 
   const bannerImg = "images/SearchBanner.png";
@@ -17,6 +18,9 @@ const SearchPage = () => {
   const [isModal, setisModal] = useState(false);
 
   return (
+    <OuterFrame>
+    <Header></Header>
+    <PageSection>
     <Frame>
       <Banner>
         <BannerImage src = {bannerImg}></BannerImage>
@@ -51,8 +55,26 @@ const SearchPage = () => {
       </SearchBarOuterFrame>
       {isModal && <FilterModal setisModal={setisModal}></FilterModal>}
     </Frame>
+    </PageSection>
+    </OuterFrame>
   );
 };
+
+const PageSection = styled.div`
+  position: relative;
+  display: flex;
+  width: 97.75%;
+  border-radius: 30px 30px 0px 0px;
+  background-color: white;
+  overflow: hidden;
+`;
+
+const OuterFrame = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
 const Frame = styled.div`
   position: relative;
