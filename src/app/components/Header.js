@@ -4,17 +4,21 @@ import styled from "styled-components";
 import React,{useState} from "react";
 import { addFilter} from "../actions/Actions";
 import { useRouter } from 'next/navigation';
+import { useDispatch } from "react-redux";
 const Header = () => {
 
   const logoImg = "images/LogoText.png"
   const magnifierImg = "images/Magnifier_Emoji.png"
   const memberImg = "images/Member.png"
+
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const [inputText, setInputText] = useState("");
   
   const handleSubmit = (event) =>{
     if(event.key === "Enter") {
+      dispatch(addFilter("검색어 : "+inputText))
       router.push("/searchpage")
     }
   }
