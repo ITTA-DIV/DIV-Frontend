@@ -1,14 +1,30 @@
 "use client"
 import styled from "styled-components";
-
+import { useNavigate } from 'react-router-dom';
+import React,{useState} from "react";
+import { addFilter} from "../actions/Actions";
+import { useDispatch } from "react-redux";
 const Header = () => {
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const [inputText, setInputText] = useState("");
+  
+  const handleSubmit = (event) =>{
+    if(event.key === "Enter") {
+      dispatch(addFilter("검색어 : "+inputText));
+      navigate("/Search");
+    }
+  }
+
   return (
     <Frame>
       <Logo src="/images/LogoText.png"></Logo>
-      <SearchField>
+      <SearchFieldFrame>
         <SearchLogo src = "/images/Magnifier_Emoji.png"></SearchLogo>
-        <SearchPlaceHolder>지금 핫한 공모전 찾아보기!!</SearchPlaceHolder>
-      </SearchField>
+        <SearchField placeholder = {"지금 핫한 공모전 찾아보기!!"} onChange={(event) => setInputText(event.target.value)} onKeyDown={(event) => handleSubmit(event)} ></SearchField>
+      </SearchFieldFrame>
       <Tab>
         <TabText>홈페이지</TabText>
         <TabText>마이페이지</TabText>
@@ -54,7 +70,7 @@ font-family: "PretendardBold";
 font-size: 15;
 `;
 
-const SearchField = styled.div`
+const SearchFieldFrame = styled.div`
   position: relative;
   display: flex;
   flex-direction: row;
@@ -65,6 +81,25 @@ const SearchField = styled.div`
   height: 39px;
   border-radius: 50px;
   background-color: var(--color-darkturquoise);
+  border: none;
+`;
+
+const SearchField = styled.input`
+  position: relative;
+  margin-left: 11px;
+  width: 353px;
+  height: 100%;
+  font-family: "PretendardBold";
+  font-size: 15;
+  color: white;
+  outline: none;
+  box-shadow: none;
+  border: none;
+  background: transparent;
+
+  &::placeholder{
+    color: white;
+  }
 `;
 
 const SearchLogo = styled.img`
@@ -84,7 +119,8 @@ const SearchPlaceHolder = styled.div`
 
 
 const UserFrame = styled.div`
-position: relative;
+position: absolute;
+right: 50px;
 display: flex;
 flex-direction: row;
 align-items: center;

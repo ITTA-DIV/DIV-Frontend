@@ -1,6 +1,6 @@
 "use client"
 import styled from "styled-components";
-import React,{span} from "react";
+import React,{span,useRef,useState} from "react";
 import {
 	Motion,
 	Spring,
@@ -11,13 +11,44 @@ import {
 } from "@/CorgiUI/src";
 
 const Category = () => {
+
+  const containerRef = useRef(null);
+
+  const [sliderOn, setsliderOn] = useState(false);
+  const [mousePosition, setmousePosition] = useState(0);
+
+
+  const handleWheel = (e) => {
+    const deltaX = mousePosition - e.clientX;
+    containerRef.current.scrollLeft += 0.5*deltaX;
+    setmousePosition(e.clientX);
+
+    // 스크롤 이벤트 전파 방지
+    e.preventDefault();
+  };
+
     
   const categoryList = ["IT","인문학","언론","과학","세미나","전시회","발표"];
   return (
     <Frame>
       <Title><span>엄</span>선한 카테고리들</Title>
       <SubTitle>담앗콘이 엄선하여 분류한 카테고리들을 살펴보세요</SubTitle>
-      <ContentRow>
+      <Motion.div
+        onMouseDown={(event, ref) => {
+          setsliderOn(true);
+          setmousePosition(event.clientX);
+        }}
+        onMouseUp={(event, ref) => {
+          setsliderOn(false);
+          setmousePosition(0);
+        }}
+        onMouseMove={(event, ref) => {
+          if (sliderOn) {
+            handleWheel(event);
+          }
+        }}
+      >
+      <ContentRow ref={containerRef}>
         {categoryList.map((category,index)=>
         {return(
           <Motion.div
@@ -35,6 +66,7 @@ const Category = () => {
         )
         }
       </ContentRow>
+      </Motion.div>
     </Frame>
   );
 };
@@ -73,6 +105,12 @@ const ContentRow = styled.div `
   flex-direction: row;
   margin-top: 8px;
   gap: 14px;
+  overflow-x: scroll;
+  overflow-y: visible;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const Content = styled.div `

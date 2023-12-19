@@ -9,7 +9,11 @@ import {
 	Easetype,
 } from "@/CorgiUI/src";
 
+import LikeButton from "./LikeButton";
 
+import ic_Heart from "../../../public/images/heart.png"
+
+const memberImage = "images/Member.png"
 
 const ProjectPost = ({title,category,date,deadline,poster_path}) => {
   return (
@@ -31,7 +35,10 @@ const ProjectPost = ({title,category,date,deadline,poster_path}) => {
           </TextRow>
         </TextFrame>
         <Line />
-        <MemberIcon alt="" src="images/Member.png" />
+        <BottomFrame>
+        <MemberIcon alt="" src= {memberImage} />
+        <LikeButton></LikeButton>
+        </BottomFrame>
         </InfoFrame>
       </ForegroundFrame>
       <DeadLineFrame>
@@ -93,12 +100,24 @@ const InfoFrame = styled.div`
 
 const MemberIcon = styled.img`
   position: relative;
-  margin-top: 9px;
   width: 30px;
   height: 30px;
   border-radius: 8px;
   object-fit: cover;
 `;
+
+
+const BottomFrame = styled.div`
+  position: relative;
+  margin-top: 9px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+`;
+
+
 
 const TextFrame = styled.div`
   position: relative;
@@ -146,6 +165,7 @@ const Outline = styled.div`
   height: 100%;
   border-radius: var(--br-6xs);
   border: 4px solid var(--color-darkturquoise);
+  pointer-events: none;
 `;
 const Frame = styled.div`
 position: relative;

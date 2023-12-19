@@ -1,19 +1,26 @@
-"use client"
+"use client";
 import styled from "styled-components";
 import Header from "./Header";
-import MainPage from "./MainPage";
+import MainPage from "../pages/MainPage";
+import SearchPage from "../pages/SearchPage";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 const PageFrame = () => {
   return (
     <Frame>
-   <Header></Header>
-   <PageSection>
-    <MainPage></MainPage>
-   </PageSection>
-   </Frame>
+      <BrowserRouter>
+        <Header></Header>
+        <PageSection>
+          <Routes>
+            <Route path="/" element=<MainPage></MainPage> />
+            <Route path="/Search" element=<SearchPage></SearchPage> />
+          </Routes>
+        </PageSection>
+      </BrowserRouter>
+    </Frame>
   );
 };
 
-const PageSection = styled.div `
+const PageSection = styled.div`
   position: relative;
   display: flex;
   width: 97.75%;
@@ -22,11 +29,11 @@ const PageSection = styled.div `
   overflow: hidden;
 `;
 
-const Frame = styled.div `
-position: relative;
-   display: flex;
-   flex-direction: column;
-   align-items: center;
+const Frame = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export default PageFrame;
