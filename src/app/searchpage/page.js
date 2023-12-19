@@ -5,17 +5,28 @@ import ProjectPost from "@/app/components/ProjectPost";
 import FilterModal from "@/app/components/FilterModal";
 import { events } from "@/app/API";
 import { useSelector } from "react-redux";
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import Header from "../components/Header";
+import { clearFilter } from "../actions/Actions";
+import { useDispatch } from "react-redux";
 const SearchPage = () => {
 
   const bannerImg = "images/SearchBanner.png";
+
+  const dispatch = useDispatch();
 
   const tempdata = events.results.dedlines;
   const resultNum = 122;
   const currentFilters = useSelector((state) => state.currentFilters);
 
   const [isModal, setisModal] = useState(false);
+
+  useEffect(() => {
+    return () =>{
+      dispatch(clearFilter());
+    }
+  }, []);
+
 
   return (
     <OuterFrame>

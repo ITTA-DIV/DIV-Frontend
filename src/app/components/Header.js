@@ -18,8 +18,8 @@ const Header = () => {
   
   const handleSubmit = (event) =>{
     if(event.key === "Enter") {
-      dispatch(addFilter("검색어 : "+inputText))
       router.push("/searchpage")
+      dispatch(addFilter("검색어 : "+inputText))
     }
   }
 
