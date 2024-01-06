@@ -23,6 +23,10 @@ const Header = () => {
     }
   }
 
+  const handleOnClickLogin = () =>{
+      router.push("/loginpage")
+  }
+
 
   return (
     <Frame>
@@ -38,7 +42,7 @@ const Header = () => {
       </Tab>
       <UserFrame>
         <ProfilePic src = {memberImg}></ProfilePic>
-        <UserName>이명준</UserName>
+        <UserName onClick={handleOnClickLogin}>이명준</UserName>
       </UserFrame>
     </Frame>
   );
