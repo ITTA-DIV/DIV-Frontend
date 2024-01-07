@@ -1,6 +1,6 @@
 "use client"
 import styled from "styled-components";
-const LoginButton = ({backgroundColor = "black",logoImg,text}) => {
+const LoginButton = ({backgroundColor = "black",logoImg,text,onClick}) => {
 
 const Frame = styled.div`
   position: relative;
@@ -29,7 +29,7 @@ const Text = styled.text`
 `;
 
   return (
-<Frame>
+<Frame onClick={onClick}>
     <Logo src ={logoImg}></Logo>
     <Text>{text}</Text>
 </Frame>
