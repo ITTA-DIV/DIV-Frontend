@@ -2,7 +2,7 @@
 import styled from "styled-components";
 const LoginButton = ({backgroundColor = "black",logoImg,text,onClick}) => {
 
-const Frame = styled.div`
+const Frame = styled.button`
   position: relative;
   display: flex;
   flex-direction: row;

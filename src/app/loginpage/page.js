@@ -2,18 +2,28 @@
 import styled from "styled-components";
 import Header from "../components/Header";
 import LoginButton from "../components/LoginButton";
+import React,{useState} from "react";
 const LoginPage = () => {
 
   const maintext = "한번의 로그인으로\n당신의 열정을 공유하세요";
   const subtext = "당신의 열정을 기록하고, 공유하세요, 맞춤형 행사를 찾아보세요\n담앗콘이 당신의 빛나는 청춘과 함께합니다.";
-  
-  const handleGoogleLogin = () =>{
+  const [dataOrigin, setData] = useState([]);
 
+  const handleGoogleLogin = () =>{
+    const fetchData = async() => {
+      const res = await fetch('http://localhost:8080/api/v1/member/login/oauth/google');
+      const result = res.json();
+      return result;
+    }	
+    
+    fetchData().then(res => setData(res.data));
+    console.log(dataOrigin)
   }
 
   const handleKakaoLogin = () =>{
 
   }
+
 
   return (
     <OuterFrame>
