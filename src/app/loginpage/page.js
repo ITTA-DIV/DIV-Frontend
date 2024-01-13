@@ -7,17 +7,16 @@ const LoginPage = () => {
 
   const maintext = "한번의 로그인으로\n당신의 열정을 공유하세요";
   const subtext = "당신의 열정을 기록하고, 공유하세요, 맞춤형 행사를 찾아보세요\n담앗콘이 당신의 빛나는 청춘과 함께합니다.";
-  const [dataOrigin, setData] = useState([]);
+  
+  const clientID = "606562447967-0ibkhonkgjq05l5hahoejj0ncnh8iln5.apps.googleusercontent.com"
+  const redirect_uri = "http://localhost:3000/loadingpage"
 
   const handleGoogleLogin = () =>{
-    const fetchData = async() => {
-      const res = await fetch('http://localhost:8080/api/v1/member/login/oauth/google');
-      const result = res.json();
-      return result;
-    }	
-    
-    fetchData().then(res => setData(res.data));
-    console.log(dataOrigin)
+    window.location.href = `https://accounts.google.com/o/oauth2/v2/auth?
+		client_id=${clientID}
+		&redirect_uri=${redirect_uri}
+		&response_type=code
+		&scope=email profile`;
   }
 
   const handleKakaoLogin = () =>{
