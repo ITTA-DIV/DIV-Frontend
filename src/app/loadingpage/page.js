@@ -20,17 +20,18 @@ const LoadingPage = () => {
   const code = params.get("code");
 
   const handleLoginPost = async (code) => {
-    const data = {
-      "Header-Key": "",
-      "code": code,
-    };
+    // const data = {
+    //   "Header-Key": "",
+    //   "code": code,
+    // };
     try {
       await fetch("http://localhost:8080/api/v1/member/login/oauth/google", {
         method: "POST",
         headers: {
           "Content-Type": "application/json; charset=utf-8",
+          "code": code
         },
-        body: JSON.stringify(data), //실제 데이터 파싱하여 body에 저장
+        // body: JSON.stringify(data), //실제 데이터 파싱하여 body에 저장
       })
         .then((res) => res.json()) // 리턴값이 있으면 리턴값에 맞는 req 지정
         .then((res) => {
