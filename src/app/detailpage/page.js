@@ -10,7 +10,9 @@ import ic_pin from "images/ic_pin.png"
 import ic_blackdoublearrow from "images/ic_blackdoublearrow.png"
 import ic_backbutton from "images/ic_backbutton.png"
 import autherimg from "images/autherimg.png"
-const DeatilPage = () => {
+import ic_speechbubble from "images/ic_speechbubble.png"
+import CommentPanel from "./CommentPanel";
+const DetailPage = () => {
 
   const timedata = "11월 25일 (토) 02:00 ~ 11월 26일(일) 20:00"
   const deadlinedata = "11월 25일 (토) 02:00 ~ 11월 26일(일) 20:00"
@@ -22,7 +24,9 @@ const DeatilPage = () => {
   const wrotedate = "Jun 19, 2019"
   const [content, setcontent] = useState("")
   const eventsubtitle = "밀라노에서 온 재홍, 런던으로 간 수지,경주에서 온 소영. 이방인 3인이 이야기하는 낯선 경험들."
-  
+  const commentCount = 7;
+  const [isPanelOn, setisPanelOn] = useState(false);
+
   useEffect(() => {
     fetch('./content.txt')
   .then((r) => r.text())
@@ -92,6 +96,15 @@ const DeatilPage = () => {
       </AutherProfileFrame>
       <Content>{content}</Content>
       </TextPanelFrame>
+      {isPanelOn &&
+      <CommentPanel></CommentPanel>
+      }
+      <CommentFrame>
+        <CommentButtonFrame onClick={() => setisPanelOn((prev) => !prev)}>
+          <CommentButtonIc src = {ic_speechbubble}></CommentButtonIc>
+        </CommentButtonFrame>
+        <CommentButtonCounter>{commentCount}</CommentButtonCounter>
+      </CommentFrame>
     </TextPanel>
     </Frame>
     </PageSection>
@@ -332,5 +345,48 @@ font-size: 20px;
 color: black;
 `;
 
+const CommentFrame = styled.div`
+position : fixed;
+bottom: 16px;
+right : 18px;
+width: 70px;
+height: 72px;
+`;
 
-export default DeatilPage;
+const CommentButtonFrame = styled.div`
+position : absolute;
+display: flex;
+align-items: center;
+justify-content: center;
+bottom: 2px;
+width: 70px;
+height: 70px;
+background-color: #3CC2C7;
+border-radius: 70px;
+`;
+
+const CommentButtonIc = styled.img`
+position: absolute;
+width: 45px;  
+height: 45px;
+`;
+
+const CommentButtonCounter = styled.div`
+position: absolute;
+display: flex;
+align-items: center;
+justify-content: center;
+font-family: "PretendardSemiBold";
+font-size: 12px;
+text-align: center center;
+right: 2px;
+bottom: 0px;
+width: 20px;
+height: 20px;
+color: white;
+background-color: black;
+border-radius: 20px;
+`;
+
+
+export default DetailPage;
