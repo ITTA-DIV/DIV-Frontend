@@ -1,65 +1,66 @@
-// "use client";
-// import styled from "styled-components";
-// import Filter from "@/app/components/Filter";
-// import ProjectPost from "@/app/components/ProjectPost";
-// import FilterModal from "@/app/components/FilterModal";
-// import { events } from "@/app/API";
-// import { useSelector } from "react-redux";
-// import React, { useState,useEffect } from "react";
-// import Header from "../components/Header";
-// import AdminPost from "../components/AdminPost";
+"use client";
+import styled from "styled-components";
+import Filter from "@/app/components/Filter";
+import ProjectPost from "@/app/components/ProjectPost";
+import FilterModal from "@/app/components/FilterModal";
+import { events } from "@/app/API";
+import { useSelector } from "react-redux";
+import React, { useState,useEffect } from "react";
+import Header from "../components/Header";
+import AdminPost from "../components/AdminPost";
 
-// const AdminPage = () => {
+const AdminPage = () => {
 
-//   const bannerImg = "images/SearchBanner.png";
+  // const bannerImg = "images/SearchBanner.png";
 
 
-//   const tempdata = events.results.dedlines;
-//   const resultNum = 122;
-//   const [isModal, setisModal] = useState(false);
+  // const tempdata = events.results.dedlines;
+  // const resultNum = 122;
+  // const [isModal, setisModal] = useState(false);
 
-//   return (
-//     <OuterFrame>
-//     <Header></Header>
-//     <PageSection>
-//     <Frame>
-//       <Banner>
-//         <BannerImage src = {bannerImg}></BannerImage>
-//         <BannerText>{resultNum}개의 공모전이 발견되었어요!</BannerText>
-//       </Banner>
-//       <ResultGrid>
-//         {tempdata.map((eventinfo, index) => {
-//           return (
-//             <AdminPost
-//               key={index}
-//               title={eventinfo.title}
-//               category={eventinfo.category}
-//               date={eventinfo.date}
-//               deadline={eventinfo.deadline}
-//               poster_path={eventinfo.poster_path}
-//             ></AdminPost>
-//           );
-//         })}
-//       </ResultGrid>
-//       <SearchBarOuterFrame>
-//         <SearchBarBackgroundSquare></SearchBarBackgroundSquare>
-//         <SearchBarFrame>
-//           <FiltersFrame>
-//             {currentFilters.map((filterName, index) => {
-//               return <Filter key={index} title={filterName}></Filter>;
-//             })}
-//           </FiltersFrame>
-//           <FilterSettingButton onClick={() => setisModal(true)}>
-//             <FilterSettingButtonText>필터 선택</FilterSettingButtonText>
-//           </FilterSettingButton>
-//         </SearchBarFrame>
-//       </SearchBarOuterFrame>
-//       {isModal && <FilterModal setisModal={setisModal}></FilterModal>}
-//     </Frame>
-//     </PageSection>
-//     </OuterFrame>
-//   );
-// };
+  return (
+    <></>
+    // <OuterFrame>
+    // <Header></Header>
+    // <PageSection>
+    // <Frame>
+    //   <Banner>
+    //     <BannerImage src = {bannerImg}></BannerImage>
+    //     <BannerText>{resultNum}개의 공모전이 발견되었어요!</BannerText>
+    //   </Banner>
+    //   <ResultGrid>
+    //     {tempdata.map((eventinfo, index) => {
+    //       return (
+    //         <AdminPost
+    //           key={index}
+    //           title={eventinfo.title}
+    //           category={eventinfo.category}
+    //           date={eventinfo.date}
+    //           deadline={eventinfo.deadline}
+    //           poster_path={eventinfo.poster_path}
+    //         ></AdminPost>
+    //       );
+    //     })}
+    //   </ResultGrid>
+    //   <SearchBarOuterFrame>
+    //     <SearchBarBackgroundSquare></SearchBarBackgroundSquare>
+    //     <SearchBarFrame>
+    //       <FiltersFrame>
+    //         {currentFilters.map((filterName, index) => {
+    //           return <Filter key={index} title={filterName}></Filter>;
+    //         })}
+    //       </FiltersFrame>
+    //       <FilterSettingButton onClick={() => setisModal(true)}>
+    //         <FilterSettingButtonText>필터 선택</FilterSettingButtonText>
+    //       </FilterSettingButton>
+    //     </SearchBarFrame>
+    //   </SearchBarOuterFrame>
+    //   {isModal && <FilterModal setisModal={setisModal}></FilterModal>}
+    // </Frame>
+    // </PageSection>
+    // </OuterFrame>
+  );
+};
 
 // const PageSection = styled.div`
 //   position: relative;
@@ -183,4 +184,4 @@
 //   font-size: 20px;
 // `;
 
-// export default AdminPage;
+export default AdminPage;
