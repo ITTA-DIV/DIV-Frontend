@@ -7,7 +7,7 @@ import { events } from "@/app/API";
 import { useSelector } from "react-redux";
 import React, { useState,useEffect } from "react";
 import Header from "../components/Header";
-import { clearFilter } from "../actions/Actions";
+import { logIn } from "../actions/Actions";
 import { useDispatch } from "react-redux";
 import AdminPost from "../components/AdminPost";
 
@@ -25,7 +25,7 @@ const AdminPage = () => {
 
   useEffect(() => {
     return () =>{
-      dispatch(clearFilter());
+      dispatch(logIn());
     }
   }, []);
 

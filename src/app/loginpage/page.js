@@ -9,7 +9,7 @@ const LoginPage =  forwardRef((props,ref) => {
   const subtext = "당신의 열정을 기록하고, 공유하세요, 맞춤형 행사를 찾아보세요\n담앗콘이 당신의 빛나는 청춘과 함께합니다.";
   
   const clientID = "606562447967-0ibkhonkgjq05l5hahoejj0ncnh8iln5.apps.googleusercontent.com"
-  const redirect_uri = "http://localhost:3000/loadingpage"
+  const redirect_uri = "https://itta-div.vercel.app/loadingpage"
 
   const [isLoading, setIsLoading] = useState(true); // Add loading state
 

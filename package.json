@@ -12,6 +12,7 @@
     "app/": "./src/app/*"
   },
   "dependencies": {
+    "@react-oauth/google": "^0.12.1",
     "autoprefixer": "10.4.15",
     "eslint": "8.49.0",
     "eslint-config-next": "13.4.19",

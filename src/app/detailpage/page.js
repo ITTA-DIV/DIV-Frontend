@@ -12,12 +12,12 @@ import ic_backbutton from "images/ic_backbutton.png"
 import autherimg from "images/autherimg.png"
 import ic_speechbubble from "images/ic_speechbubble.png"
 import CommentPanel from "./CommentPanel";
-import { useRouter,useParams } from 'next/navigation';
+import { useRouter,useSearchParams } from 'next/navigation';
 const DetailPage = () => {
 
   const [dataOrigin, setData] = useState([]);
-  const params = useParams();
-  const { eventId } = params;
+  const params = useSearchParams();
+  const  eventId  = params.get('eventId');
 
   // const timedata = "11월 25일 (토) 02:00 ~ 11월 26일(일) 20:00"
   // const deadlinedata = "11월 25일 (토) 02:00 ~ 11월 26일(일) 20:00"
@@ -46,20 +46,14 @@ const DetailPage = () => {
 
   useEffect(() => {
     const handleDetail = async (eventId) => {
-      try {
-        await fetch(`/api/v1/event/${eventId}`, {
+        const res = await fetch(`https://www.damoacon.shop/api/v1/event/${eventId}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json; charset=utf-8",
           },
-        })
-          .then((res) => res.json()) // 리턴값이 있으면 리턴값에 맞는 req 지정
-          .then((res) => {
-            console.log(res); // 리턴값에 대한 처리
-          });
-      } catch (error) {
-        console.log(error);
-      }
+        });
+          const result = res.json();
+          return result;
     };
 
    handleDetail(eventId).then(res => setData(res.data));

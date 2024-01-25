@@ -23,7 +23,7 @@ const ProjectPost = ({title,category,date,deadline,poster_path,eventId}) => {
     <Motion.div
     onMouseOver={(event,ref) => Spring.scaleMotion(1.05,1.05,0,[15, 0.27, 55],ref,"change")}
     onMouseLeave = {(event,ref) => Spring.scaleMotion(1,1,0,[15, 0.27, 55],ref,"change")}
-    onClick = {() =>{router.push('/detailpage', `/detailpage/${eventId}`);}}
+    onClick = {() =>{router.push(`/detailpage/?eventId=${eventId}`);}}
     >
     <Frame>
       <Inner>

@@ -1,20 +1,27 @@
 "use client"
 import styled from "styled-components";
 // import { useNavigate } from 'react-router-dom';
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 import { addFilter} from "../actions/Actions";
 import { useRouter } from 'next/navigation';
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 const Header = () => {
 
   const logoImg = "images/LogoText.png"
   const magnifierImg = "images/Magnifier_Emoji.png"
   const memberImg = "images/Member.png"
+  // const [isLoggedIn, setisLoggedIn] = useState(false)
+  const isLoggedIn = useSelector((state) => state.isLogIn);
 
   const router = useRouter();
   const dispatch = useDispatch();
 
   const [inputText, setInputText] = useState("");
+
+
+  // useEffect(() => {
+  //   setisLoggedIn(() =>{useSelector((state) => state.isLogIn)});
+  //   }, [])
   
   const handleSubmit = (event) =>{
     if(event.key === "Enter") {
@@ -41,8 +48,17 @@ const Header = () => {
         <TabText>등록하기</TabText>
       </Tab>
       <UserFrame>
+        {
+          isLoggedIn ? 
+          <>
+          <ProfilePic src = {memberImg}></ProfilePic>
+          <UserName onClick={handleOnClickLogin}>로그인 하기</UserName>
+          </>
+          :
+          <></>
+        }
         <ProfilePic src = {memberImg}></ProfilePic>
-        <UserName onClick={handleOnClickLogin}>이명준</UserName>
+        <UserName onClick={handleOnClickLogin}>로그인 중</UserName>
       </UserFrame>
     </Frame>
   );

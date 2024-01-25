@@ -54,8 +54,7 @@ const SectionRow = ({ data, title, subtitle }) => {
       >
         <ContentRow ref={containerRef}>
           {data.map((eventinfo, index) => {
-            console.log(eventinfo.title)
-            return (
+        return (
               <ProjectPost
                 key={index}
                 title={eventinfo.title}
