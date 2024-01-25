@@ -1,56 +1,67 @@
-"use client"
+"use client";
 import styled from "styled-components";
 import {
-	Motion,
-	Spring,
-	GlobalController,
-	GuageController,
-	Tween,
-	Easetype,
+  Motion,
+  Spring,
+  GlobalController,
+  GuageController,
+  Tween,
+  Easetype,
 } from "@/CorgiUI/src";
 
 import LikeButton from "./LikeButton";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 
-const memberImage = "images/Member.png"
+const memberImage = "images/Member.png";
 
-const ProjectPost = ({title,category,date,deadline,poster_path,eventId}) => {
-
+const ProjectPost = ({
+  title,
+  category,
+  date,
+  deadline,
+  poster_path,
+  eventId,
+}) => {
   const router = useRouter();
-  
 
   return (
     <Motion.div
-    onMouseOver={(event,ref) => Spring.scaleMotion(1.05,1.05,0,[15, 0.27, 55],ref,"change")}
-    onMouseLeave = {(event,ref) => Spring.scaleMotion(1,1,0,[15, 0.27, 55],ref,"change")}
-    onClick = {() =>{router.push(`/detailpage/?eventId=${eventId}`);}}
+      onMouseOver={(event, ref) =>
+        Spring.scaleMotion(1.05, 1.05, 0, [15, 0.27, 55], ref, "change")
+      }
+      onMouseLeave={(event, ref) =>
+        Spring.scaleMotion(1, 1, 0, [15, 0.27, 55], ref, "change")
+      }
+      onClick={() => {
+        router.push(`/detailpage/?eventId=${eventId}`);
+      }}
     >
-    <Frame>
-      <Inner>
-      <PosterImg alt="" src={poster_path} />
-      <ForegroundFrame>
-        <InfoFrame>
-        <TextFrame>
-          <Category>{category}</Category>
-          <Title>{title}</Title>
-          <TextRow>
-          <Date>{date}</Date>
-          <Price>무료</Price>
-          </TextRow>
-        </TextFrame>
-        <Line />
-        <BottomFrame>
-        <MemberIcon alt="" src= {memberImage} />
-        <LikeButton></LikeButton>
-        </BottomFrame>
-        </InfoFrame>
-      </ForegroundFrame>
-      <DeadLineFrame>
-        <DeadLineText>{"마감까지 D-"+deadline}</DeadLineText>
-      </DeadLineFrame>
-      <Outline />
-      </Inner>
-    </Frame>
+      <Frame>
+        <Inner>
+          <PosterImg alt="" src={poster_path} />
+          <ForegroundFrame>
+            <InfoFrame>
+              <TextFrame>
+                <Category>{category}</Category>
+                <Title>{title}</Title>
+                <TextRow>
+                  <Date>{date}</Date>
+                  <Price>무료</Price>
+                </TextRow>
+              </TextFrame>
+              <Line />
+              <BottomFrame>
+                <MemberIcon alt="" src={memberImage} />
+                <LikeButton></LikeButton>
+              </BottomFrame>
+            </InfoFrame>
+          </ForegroundFrame>
+          <DeadLineFrame>
+            <DeadLineText>{"마감까지 D-" + deadline}</DeadLineText>
+          </DeadLineFrame>
+          <Outline />
+        </Inner>
+      </Frame>
     </Motion.div>
   );
 };
@@ -90,8 +101,8 @@ const Price = styled.div`
 `;
 
 const TextRow = styled.div`
-display: flex;
-justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 `;
 
 const InfoFrame = styled.div`
@@ -109,7 +120,6 @@ const MemberIcon = styled.img`
   object-fit: cover;
 `;
 
-
 const BottomFrame = styled.div`
   position: relative;
   margin-top: 9px;
@@ -119,8 +129,6 @@ const BottomFrame = styled.div`
   width: 100%;
   justify-content: space-between;
 `;
-
-
 
 const TextFrame = styled.div`
   position: relative;
@@ -171,7 +179,7 @@ const Outline = styled.div`
   pointer-events: none;
 `;
 const Frame = styled.div`
-position: relative;
+  position: relative;
   border-radius: var(--br-6xs);
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
   display: flex;
@@ -184,7 +192,6 @@ const Inner = styled.div`
   height: 277px;
   border-radius: var(--br-6xs);
   overflow: hidden;
-  
 `;
 
 export default ProjectPost;

@@ -20,9 +20,9 @@ const periodFilterList = {
   types : ["startDate","endDate"],
   filters :[
     {title : "모든 날", values : ["1900-01-01T00:00:00","2100-01-01T00:00:00"]},
-    {title : "오늘", values : [today.format(YYYY-MM-DD)+ "T00:00:00",today.format(YYYY-MM-DD)+"T24:00:00"]},
-    {title : "이번 주", values : [today.startOf('week').format(YYYY-MM-DD)+ "T00:00:00",today.endOf('week').format(YYYY-MM-DD)+ "T24:00:00"]},
-    {title : "이번 달", values : [today.startOf('month').format(YYYY-MM-DD)+ "T00:00:00",today.endOf('month').format(YYYY-MM-DD)+ "T24:00:00"]}
+    {title : "오늘", values : [today.format("YYYY-MM-DD")+ "T00:00:00",today.format("YYYY-MM-DD")+"T24:00:00"]},
+    {title : "이번 주", values : [today.startOf('week').format("YYYY-MM-DD")+ "T00:00:00",today.endOf('week').format("YYYY-MM-DD")+ "T24:00:00"]},
+    {title : "이번 달", values : [today.startOf('month').format("YYYY-MM-DD")+ "T00:00:00",today.endOf('month').format("YYYY-MM-DD")+ "T24:00:00"]}
   ]
   // "모든 날", "오늘", "이번 주", "이번 달", "기간 선택"
 };
