@@ -3,7 +3,7 @@ import styled from "styled-components";
 import React, { useState } from "react";
 import { addFilter, removeFilter } from "../actions/Actions";
 import { useSelector,useDispatch } from "react-redux";
-const SelectionFilter = ({ title }) => {
+const SelectionFilter = ({ title,types,values }) => {
 
   const dispatch = useDispatch();
   const currentFilters = useSelector((state) => state.currentFilters);
@@ -13,7 +13,9 @@ const SelectionFilter = ({ title }) => {
   );
 
   const handleClick = () => {
-    dispatch(selected ? removeFilter(title) : addFilter(title));
+    types.map((type,index)=>{
+      dispatch(selected ? removeFilter(type) : addFilter(title,type,values[index]))
+    })
     setselected(!selected);
   };
 

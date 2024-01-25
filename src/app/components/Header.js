@@ -10,23 +10,19 @@ const Header = () => {
   const logoImg = "images/LogoText.png"
   const magnifierImg = "images/Magnifier_Emoji.png"
   const memberImg = "images/Member.png"
-  // const [isLoggedIn, setisLoggedIn] = useState(false)
   const isLoggedIn = useSelector((state) => state.isLogIn);
+  const userName = useSelector((state)=> state.userName);
+  const userProfile = useSelector((state)=> state.userProfile);
 
   const router = useRouter();
   const dispatch = useDispatch();
 
   const [inputText, setInputText] = useState("");
-
-
-  // useEffect(() => {
-  //   setisLoggedIn(() =>{useSelector((state) => state.isLogIn)});
-  //   }, [])
   
   const handleSubmit = (event) =>{
     if(event.key === "Enter") {
       router.push("/searchpage")
-      dispatch(addFilter("검색어 : "+inputText))
+      dispatch(addFilter("검색어 : "+inputText,"keywords",inputText))
     }
   }
 
@@ -34,37 +30,7 @@ const Header = () => {
       router.push("/loginpage")
   }
 
-
-  return (
-    <Frame>
-      <Logo src={logoImg} onClick={() => router.push("/mainpage")}></Logo>
-      <SearchFieldFrame>
-        <SearchLogo src = {magnifierImg}></SearchLogo>
-        <SearchField placeholder = {"지금 핫한 공모전 찾아보기!!"} onChange={(event) => setInputText(event.target.value)} onKeyDown={(event) => handleSubmit(event)} ></SearchField>
-      </SearchFieldFrame>
-      <Tab>
-        <TabText>홈페이지</TabText>
-        <TabText>마이페이지</TabText>
-        <TabText>등록하기</TabText>
-      </Tab>
-      <UserFrame>
-        {
-          isLoggedIn ? 
-          <>
-          <ProfilePic src = {memberImg}></ProfilePic>
-          <UserName onClick={handleOnClickLogin}>로그인 하기</UserName>
-          </>
-          :
-          <></>
-        }
-        <ProfilePic src = {memberImg}></ProfilePic>
-        <UserName onClick={handleOnClickLogin}>로그인 중</UserName>
-      </UserFrame>
-    </Frame>
-  );
-};
-
-const Frame = styled.div `
+  const Frame = styled.div `
   position: relative;
   display: flex;
   flex-direction: row;
@@ -160,6 +126,7 @@ width: 30px;
 height: 30px;
 margin-left: 630px;
 border-radius: 30px;
+background-image: url(${userProfile});
 `;
 
 const UserName = styled.p`
@@ -167,5 +134,35 @@ position: relative;
 font-family: "PretendardBold";
 font-size: 15px;
 `;
+
+  return (
+    <Frame>
+      <Logo src={logoImg} onClick={() => router.push("/mainpage")}></Logo>
+      <SearchFieldFrame>
+        <SearchLogo src = {magnifierImg}></SearchLogo>
+        <SearchField placeholder = {"지금 핫한 공모전 찾아보기!!"} onChange={(event) => setInputText(event.target.value)} onKeyDown={(event) => handleSubmit(event)} ></SearchField>
+      </SearchFieldFrame>
+      <Tab>
+        <TabText>홈페이지</TabText>
+        <TabText>마이페이지</TabText>
+        <TabText>등록하기</TabText>
+      </Tab>
+      <UserFrame>
+        {
+          isLoggedIn ? 
+          <>
+          <ProfilePic src = {userProfile}></ProfilePic>
+          <UserName onClick={handleOnClickLogin}>{userName}</UserName>
+          </>
+          :
+          <>
+        <ProfilePic src = {memberImg}></ProfilePic>
+        <UserName onClick={handleOnClickLogin}>로그인 하기</UserName>
+          </>
+        }
+      </UserFrame>
+    </Frame>
+  );
+};
 
 export default Header;

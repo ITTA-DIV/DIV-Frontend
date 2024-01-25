@@ -3,14 +3,16 @@ import styled from "styled-components";
 import React from "react";
 import { removeFilter } from "../actions/Actions";
 import { useDispatch } from "react-redux";
-const Filter = ({ title }) => {
+const Filter = ({ title,types,values }) => {
 
   const deleteButtonImg = "/images/ic_CloseButton.png" 
 
   const dispatch = useDispatch();
 
   const handleClick = () => {
-    dispatch(removeFilter(title));
+    types.map((type,index)=>{
+      dispatch(removeFilter(type))
+    })
   };
 
   return (

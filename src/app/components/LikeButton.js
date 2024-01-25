@@ -9,19 +9,43 @@ import {
   Easetype,
 } from "@/CorgiUI/src";
 import React,{useState} from "react";
+import { useSelector } from "react-redux";
 
 const heartImg = "images/heart.png";
 const heartFillImg = "images/heartfill.png"; 
 
-const LikeButton = () => {
-  const handleClick = (event) => {
-    setisLiked(!isLiked);
+const LikeButton = ({eventId}) => {
+  const accessToken = useSelector((state) => state.accessToken);
+  const handleClick = async (event,currentLiked) => {
+    currentLiked = !currentLiked
+    setisLiked(currentLiked);
+        try {
+          if(currentLiked){
+          await fetch(`http://localhost:8080/api/v1/heart/${eventId}`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json; charset=utf-8",
+              "Authorization": `Bearer ${accessToken}`
+            },
+          })}
+          else{
+            await fetch(`http://localhost:8080/api/v1/heart/${eventId}`, {
+              method: "DELETE",
+              headers: {
+                "Content-Type": "application/json; charset=utf-8",
+                "Authorization": `Bearer ${accessToken}`
+              },
+            })
+          }
+        } catch (error) {
+          console.log(error);
+        }
   };
 
   const [isLiked, setisLiked] = useState(false)
 
   return (
-    <LikeButtonFrame onClick={(event) => handleClick(event)}>
+    <LikeButtonFrame onClick={(event) => handleClick(event,isLiked)}>
       {isLiked ? (
         <LikeButtonOutline src= {heartFillImg}></LikeButtonOutline>
       ) : (

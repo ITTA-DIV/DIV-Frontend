@@ -7,27 +7,18 @@ import { events } from "@/app/API";
 import { useSelector } from "react-redux";
 import React, { useState,useEffect } from "react";
 import Header from "../components/Header";
-import { logIn } from "../actions/Actions";
-import { useDispatch } from "react-redux";
 import AdminPost from "../components/AdminPost";
 
 const AdminPage = () => {
 
   const bannerImg = "images/SearchBanner.png";
 
-  const dispatch = useDispatch();
 
   const tempdata = events.results.dedlines;
   const resultNum = 122;
   const currentFilters = useSelector((state) => state.currentFilters);
 
   const [isModal, setisModal] = useState(false);
-
-  useEffect(() => {
-    return () =>{
-      dispatch(logIn());
-    }
-  }, []);
 
 
   return (

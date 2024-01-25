@@ -46,7 +46,7 @@ const DetailPage = () => {
 
   useEffect(() => {
     const handleDetail = async (eventId) => {
-        const res = await fetch(`https://www.damoacon.shop/api/v1/event/${eventId}`, {
+        const res = await fetch(`http://localhost:8080/api/v1/event/${eventId}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json; charset=utf-8",

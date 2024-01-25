@@ -1,5 +1,6 @@
 "use client";
 import styled from "styled-components";
+import moment from "moment";
 import {
   Motion,
   Spring,
@@ -13,39 +14,86 @@ import SelectionFilter from "./SelectionFilter";
 
 const closeButtonImg = "images/ic_CloseButton_Black.png"
 
-const periodFilterList = ["모든 날", "오늘", "이번 주", "이번 달", "기간 선택"];
+const today = moment();
 
-const stateFilterList = [
-  "수도권",
-  "부산/울산/경남",
-  "대구/경북",
-  "충청/대전/세종",
-  "전라/광주",
-  "강원",
-];
+const periodFilterList = {
+  types : ["startDate","endDate"],
+  filters :[
+    {title : "모든 날", values : ["1900-01-01T00:00:00","2100-01-01T00:00:00"]},
+    {title : "오늘", values : [today.format(YYYY-MM-DD)+ "T00:00:00",today.format(YYYY-MM-DD)+"T24:00:00"]},
+    {title : "이번 주", values : [today.startOf('week').format(YYYY-MM-DD)+ "T00:00:00",today.endOf('week').format(YYYY-MM-DD)+ "T24:00:00"]},
+    {title : "이번 달", values : [today.startOf('month').format(YYYY-MM-DD)+ "T00:00:00",today.endOf('month').format(YYYY-MM-DD)+ "T24:00:00"]}
+  ]
+  // "모든 날", "오늘", "이번 주", "이번 달", "기간 선택"
+};
 
-const categoryFilterList = [
-  "창업",
-  "IT",
-  "라이프",
-  "경제/금융",
-  "경영",
-  "인문/사회",
-  "예술",
-  "마케팅",
-  "커리어",
-  "과학",
-  "디자인/영상",
-  "의료/의학",
-  "행사 기획",
-  "관광/여행",
-];
+const stateFilterList = {
+  types : ["address"],
+  filters:[
+    {title : "서울/경기/인천", values : ["서울","경기","인천"]},
+    {title : "부산/울산/경남", values : ["부산","울산","경남"]},
+    {title : "대구/경북", values : ["대구","경북"]},
+    {title : "충청/대전/세종", values : ["충청","대전","세종"]},
+    {title : "전라/광주", values : ["전라","광주"]},
+    {title : "강원", values : ["강원"]},
+    {title : "제주", values : ["제주"]},
+  ]
+};
 
-const formetFilterList = ["강연/세미나", "공모전", "컨퍼런스"];
+const categoryFilterList = {
+  types : ["category_name"],
+  filters :[
+  {title : "창업", values : "창업"},
+  {title : "IT/프로그래밍", values : "IT/프로그래밍"},
+  {title : "라이프", values : "라이프"},
+  {title : "경제/금융", values : "경제/금융"},
+  {title : "경영", values : "경영"},
+  {title : "인문/사회", values : "인문/사회"},
+  {title : "예술", values : "예술"},
+  {title : "마케팅", values : "마케팅"},
+  {title : "커리어", values : "커리어"},
+  {title : "과학기술", values : "과학기술"},
+  {title : "디자인/영상", values : "디자인/영상"},
+  {title : "의료/의학", values : "의료/의학"},
+  {title : "행사 기획", values : "행사 기획"},
+  {title : "관광/여행", values : "관광/여행"},
+  {title : "기타", values : "기타"},
+  ]
+};
 
-const attendenceFilterList = ["온라인", "오프라인"];
+const formetFilterList = {
+  types : ["type"],
+  filters:[
+    {title : "강연/세미나", values : "강연/세미나"},
+    {title : "모임/커뮤니티", values : "모임/커뮤니티"},
+    {title : "멘토링/대외활동", values : "멘토링/대외활동"},
+    {title : "대회/공모전", values : "대회/공모전"},
+    {title : "데모데이", values : "데모데이"},
+    {title : "워크샵/클리닉", values : "워크샵/클리닉"},
+    {title : "박람회/페어", values : "관광/투어"},
+    {title : "콘테스트/콩쿠르", values : "콘테스트/콩쿠르"},
+    {title : "회의/컨벤션", values : "회의/컨벤션"},
+    {title : "축제/공연/전시", values : "축제/공연/전시"},
+    {title : "기타", values : "기타"},
+  ]
+};
 
-const priceFilterList = ["무료", "유료", "직접 입력"];
+const attendenceFilterList = {
+  types : ["location"],
+  filters:[
+    {title : "온라인", values : "온라인"},
+    {title : "오프라인", values : "오프라인"}
+  ]
+};
+
+const priceFilterList = {
+  types : ["free","notFree","price"],
+  filters:[
+    {title : "무료", values : [true,false,""]},
+    {title : "유료", values : [false,true,""]},
+  ]
+  // "무료", "유료", "직접 입력"
+};
 
 const filterTitleList = [
     { title: "일시", data: periodFilterList },
@@ -73,9 +121,9 @@ const FilterModal = ({setisModal}) => {
                 {filterSet.title.substring(1)}
               </Title>
               <FiltersFrame>
-                {filterSet.data.map((filterName, index) => {
+                {filterSet.data.filters.map((filterData, index) => {
                     return (
-                  <SelectionFilter key = {index} title = {filterName}></SelectionFilter>
+                  <SelectionFilter key = {index} types = {filterSet.data.types} title = {filterData.title} values={filterData.values}></SelectionFilter>
         )})}
               </FiltersFrame>
             </TagLineFrame>

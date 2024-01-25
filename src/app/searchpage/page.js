@@ -5,69 +5,86 @@ import ProjectPost from "@/app/components/ProjectPost";
 import FilterModal from "@/app/components/FilterModal";
 import { events } from "@/app/API";
 import { useSelector } from "react-redux";
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../components/Header";
 import { clearFilter } from "../actions/Actions";
 import { useDispatch } from "react-redux";
 
 const SearchPage = () => {
-
+  const [dataOrigin, setData] = useState([]);
   const bannerImg = "images/SearchBanner.png";
-
   const dispatch = useDispatch();
-
   const tempdata = events.results.dedlines;
-  const resultNum = 122;
+  const [resultNum, setresultNum] = useState(0);
   const currentFilters = useSelector((state) => state.currentFilters);
 
   const [isModal, setisModal] = useState(false);
 
   useEffect(() => {
-    return () =>{
+    return () => {
       dispatch(clearFilter());
-    }
+    };
   }, []);
 
+  useEffect(() => {
+    const handleSearch = async () => {
+      try {
+        await fetch("http://localhost:8080/api/v1/event/search", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json; charset=utf-8",
+          },
+          body: currentFilters,
+        })
+        .then((res)=>res.json())
+        .then((res) => setresultNum(res.data.totalElements))
+        .then((res) => setData(res.data));
+      } catch (error) {
+        console.log(error);
+      }
+    };
+  }, [currentFilters]);
 
   return (
     <OuterFrame>
-    <Header></Header>
-    <PageSection>
-    <Frame>
-      <Banner>
-        <BannerImage src = {bannerImg}></BannerImage>
-        <BannerText>{resultNum}개의 공모전이 발견되었어요!</BannerText>
-      </Banner>
-      <ResultGrid>
-        {tempdata.map((eventinfo, index) => {
-          return (
-            <ProjectPost
-              key={index}
-              title={eventinfo.title}
-              category={eventinfo.category}
-              date={eventinfo.date}
-              deadline={eventinfo.deadline}
-              poster_path={eventinfo.poster_path}
-            ></ProjectPost>
-          );
-        })}
-      </ResultGrid>
-      <SearchBarOuterFrame>
-        <SearchBarBackgroundSquare></SearchBarBackgroundSquare>
-        <SearchBarFrame>
-          <FiltersFrame>
-            {currentFilters.map((filterName, index) => {
-              return <Filter key={index} title={filterName}></Filter>;
+      <Header></Header>
+      <PageSection>
+        <Frame>
+          <Banner>
+            <BannerImage src={bannerImg}></BannerImage>
+            <BannerText>{resultNum}개의 공모전이 발견되었어요!</BannerText>
+          </Banner>
+          <ResultGrid>
+            {dataOrigin.content.map((eventinfo, index) => {
+              return (
+                <ProjectPost
+                  key={index}
+                  title={eventinfo.title}
+                  category={eventinfo.category_name}
+                  date={eventinfo.eventDateTimeString}
+                  deadline={eventinfo.remainingDays}
+                  poster_path={eventinfo.thumbnail}
+                  eventId={eventinfo.id}
+                ></ProjectPost>
+              );
             })}
-          </FiltersFrame>
-          <FilterSettingButton onClick={() => setisModal(true)}>
-            <FilterSettingButtonText>필터 선택</FilterSettingButtonText>
-          </FilterSettingButton>
-        </SearchBarFrame>
-      </SearchBarOuterFrame>
-      {isModal && <FilterModal setisModal={setisModal}></FilterModal>}
-    </Frame>
-    </PageSection>
+          </ResultGrid>
+          <SearchBarOuterFrame>
+            <SearchBarBackgroundSquare></SearchBarBackgroundSquare>
+            <SearchBarFrame>
+              <FiltersFrame>
+                {currentFilters.map((filterName, index) => {
+                  return <Filter key={index} title={filterName}></Filter>;
+                })}
+              </FiltersFrame>
+              <FilterSettingButton onClick={() => setisModal(true)}>
+                <FilterSettingButtonText>필터 선택</FilterSettingButtonText>
+              </FilterSettingButton>
+            </SearchBarFrame>
+          </SearchBarOuterFrame>
+          {isModal && <FilterModal setisModal={setisModal}></FilterModal>}
+        </Frame>
+      </PageSection>
     </OuterFrame>
   );
 };

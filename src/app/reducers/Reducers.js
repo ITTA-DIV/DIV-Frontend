@@ -6,12 +6,31 @@ import {
   LOG_IN,
   LOG_OUT,
   SET_ACCESS_TOKEN,
+  SET_USER_NAME,
+  SET_USER_PROFILE,
+  SET_REFRESH_TOKEN,
 } from "../actions/Actions";
 const initialState = {
-  currentFilters: [],
+  currentFilters: {
+    keywords: { title: null, value: null },
+    startDate: { title: null, value: null },
+    endDate: { title: null, value: null },
+    address: { title: null, value: null },
+    type: { title: null, value: null },
+    location: { title: null, value: null },
+    price: { title: null, value: null },
+    category_name: { title: null, value: null },
+    free: { title: null, value: null },
+    notFree: { title: null, value: null },
+    minPrice: { title: null, value: null },
+    maxPrice: { title: null, value: null },
+  },
   currentUrl: "/mainpage",
   isLogIn: false,
-  accessToken: "hi"
+  accessToken: "",
+  refreashToken: "",
+  userName: "user",
+  userProfile: "images/Member.png",
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -19,34 +38,61 @@ const rootReducer = (state = initialState, action) => {
     case ADD_FILTER:
       return {
         ...state,
-        currentFilters: [...state.currentFilters, action.payload],
+        currentFilters: {
+          ...prevDictionary,
+          [action.payload.filterType]: {
+            title: action.payload.filterTitle,
+            value: action.payload.filterValue,
+          },
+        },
       };
     case REMOVE_FILTER:
       return {
         ...state,
-        currentFilters: state.currentFilters.filter(
-          (filterValue) => filterValue !== action.payload
-        ),
+        currentFilters: {
+          ...prevDictionary,
+          [action.payload.filterType]: { title: null, value: null },
+        },
       };
     case CLEAR_FILTER:
       return {
+        ...state,
         currentFilters: [],
       };
     case CHANGE_URL:
       return {
+        ...state,
         currentUrl: action.payload,
       };
     case LOG_IN:
       return {
+        ...state,
         isLogIn: true,
       };
     case LOG_OUT:
       return {
+        ...state,
         isLogIn: false,
       };
     case SET_ACCESS_TOKEN:
       return {
-        accessToken: "hi",
+        ...state,
+        accessToken: action.payload,
+      };
+    case SET_REFRESH_TOKEN:
+      return {
+        ...state,
+        refreashToken: action.payload,
+      };
+    case SET_USER_NAME:
+      return {
+        ...state,
+        userName: action.payload,
+      };
+    case SET_USER_PROFILE:
+      return {
+        ...state,
+        userProfile: action.payload,
       };
     default:
       return state;

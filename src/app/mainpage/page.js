@@ -12,34 +12,15 @@ const MainPage = () => {
   const [dataOrigin, setData] = useState([]);
   const [user, setUser] = useState([]);
   const [profile, setProfile] = useState([]);
-  const accessToken = useSelector((state) => state.accessToken);
-  console.log(accessToken)
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch("https://www.damoacon.shop/api/v1/event");
+      const res = await fetch("http://localhost:8080/api/v1/event");
       const result = res.json();
       return result;
     };
 
     fetchData().then((res) => setData(res.data));
-
-    const getGoogleProfile = async () => {
-      const res = await fetch(
-        `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${accessToken}}`,
-        {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-            Accept: "application/json",
-          },
-        }
-      );
-      const result = res.json();
-      return result;
-    };
-
-    getGoogleProfile().then((res) => setProfile(res.data)).then((res)=>console.log(res.data));
   }, []);
 
   return (

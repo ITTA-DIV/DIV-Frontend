@@ -4,6 +4,7 @@ import Header from "../components/Header";
 import React, { useEffect, useState } from "react";
 import { events } from "@/app/API";
 import ProjectPost from "../components/ProjectPost";
+import { useSelector } from "react-redux";
 const MyPage = () => {
 
   const tempdata = events.results.dedlines;
@@ -11,6 +12,44 @@ const MyPage = () => {
   const img_mypage_banner = "images/img_mypage_banner.png"
   const img_mypage_profilepic = "images/img_mypage_profilepic.png"
   const ic_arrow_black = "images/ic_arrow_black.png"
+  const accessToken = useSelector((state) => state.accessToken)
+  const nickname = useSelector((state) => state.userName)
+  const profilePic = useSelector((state) => state.userProfile)
+  const [interests, setinterests] = useState([])
+  const [heartEvents, setheartEvents] = useState([])
+
+  const formatDate = (dateString) =>{
+    const date = new Date(dateString);
+    const dateArray = ["월","화","수","목","금","토","일"]
+
+    var month = String(date.getMonth()+1).padStart(2, '0');
+    var day = String(date.getDate()).padStart(2, '0');
+    var dayName = dateArray[date.getDay()];
+    
+    return `${month}월 ${day}일 (${dayName})`
+  }
+
+  useEffect(() => {
+    const handleInit = async() => {
+    try {
+      await fetch(`http://localhost:8080/api/v1/member/mypage`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json; charset=utf-8",
+          "Authorization": `Bearer ${accessToken}`
+        },
+      })
+      .then((res)=>res.json())
+      .then((res)=>{
+        setinterests(res.data.memberInfo.interest);
+        setheartEvents(res.data.heartEvents)
+      })
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  handleInit();
+  }, [])
 
   return (
     <OuterFrame>
@@ -21,10 +60,11 @@ const MyPage = () => {
           <UserBannerFrame>
             <UserBanner>
               <UserDataFrame>
-                <UserName>이명준</UserName>
+                <UserName>{nickname}</UserName>
                 <UserTagsList>
-                  <UserTag>IT</UserTag>
-                  <UserTag>디자인</UserTag>
+                  {interests.map((interest,index)=>{
+                    return (<UserTag key = {index}>{interest.category_name}</UserTag>)
+                  })}
                 </UserTagsList>
               </UserDataFrame>
                 <UserDataSectionGrid>
@@ -49,15 +89,15 @@ const MyPage = () => {
             아요 목록
           </Title>
           <ResultGrid>
-            {tempdata.map((eventinfo, index) => {
+            {heartEvents.map((eventinfo, index) => {
               return (
                 <ProjectPost
                   key={index}
                   title={eventinfo.title}
                   category={eventinfo.category}
-                  date={eventinfo.date}
-                  deadline={eventinfo.deadline}
-                  poster_path={eventinfo.poster_path}
+                  date={formatDate(eventinfo.startDate)}
+                  deadline={eventinfo.remainDate}
+                  poster_path={eventinfo.thumbnail}
                 ></ProjectPost>
               );
             })}
