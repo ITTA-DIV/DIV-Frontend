@@ -12,12 +12,12 @@ import ic_backbutton from "images/ic_backbutton.png"
 import autherimg from "images/autherimg.png"
 import ic_speechbubble from "images/ic_speechbubble.png"
 import CommentPanel from "./CommentPanel";
-import { useRouter } from 'next/navigation';
+import { useRouter,useParams } from 'next/navigation';
 const DetailPage = () => {
 
   const [dataOrigin, setData] = useState([]);
-  const router = useRouter();
-  const { eventId } = router.query;
+  const params = useParams();
+  const { eventId } = params;
 
   // const timedata = "11월 25일 (토) 02:00 ~ 11월 26일(일) 20:00"
   // const deadlinedata = "11월 25일 (토) 02:00 ~ 11월 26일(일) 20:00"
