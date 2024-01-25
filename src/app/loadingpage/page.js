@@ -5,6 +5,7 @@ const LoadingPage = forwardRef((props,ref) => {
   const router = useRouter();
 
   const [isLoading, setIsLoading] = useState(true); // Add loading state
+  const [code, setcode] = useState("")
 
   useEffect(() => {
     setIsLoading(false); // Mark loading as false when done
@@ -15,9 +16,10 @@ const LoadingPage = forwardRef((props,ref) => {
     router.push("/mainpage");
   };
 
-  // 현재 url에서 code 부분 추출
+  useEffect(() => {
+      // 현재 url에서 code 부분 추출
   const params = new URLSearchParams(window.location.search);
-  const code = params.get("code");
+  setcode(params.get("code"));
 
   const handleLoginPost = async (code) => {
     // const data = {
@@ -48,7 +50,6 @@ const LoadingPage = forwardRef((props,ref) => {
     }
   };
 
-  useEffect(() => {
     if (code) {
       handleLoginPost(code);
     } else {
