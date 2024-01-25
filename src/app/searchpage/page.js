@@ -9,6 +9,7 @@ import React, { useState,useEffect } from "react";
 import Header from "../components/Header";
 import { clearFilter } from "../actions/Actions";
 import { useDispatch } from "react-redux";
+
 const SearchPage = () => {
 
   const bannerImg = "images/SearchBanner.png";

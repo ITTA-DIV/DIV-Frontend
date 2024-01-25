@@ -1,19 +1,19 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState,forwardRef } from "react";
 import { useRouter } from 'next/navigation';
-const LoadingPage = () => {
+const LoadingPage = forwardRef((props,ref) => {
   const router = useRouter();
+
+  const [isLoading, setIsLoading] = useState(true); // Add loading state
+
+  useEffect(() => {
+    setIsLoading(false); // Mark loading as false when done
+  }, []);
 
   // 이미 가입한 유저일 시 : 메인 페이지로 이동
   const handleHome = () => {
-    // router.push("/mainpage");
+    router.push("/mainpage");
   };
-
-  // 처음 가입한 유저일 시 : 닉네임 설정 페이지로 이동
-  // const handleNickName = () => {
-  //   navigate("/nickname");
-  //   window.location.reload();
-  // };
 
   // 현재 url에서 code 부분 추출
   const params = new URLSearchParams(window.location.search);
@@ -56,7 +56,11 @@ const LoadingPage = () => {
     }
   }, [code]);
 
-  return <h2>로그인 중입니다...</h2>;
-};
+  return <>
+  {isLoading ? null : <h2>로그인 중입니다...</h2>}
+  </>;
+});
+
+LoadingPage.displayName = "LoadingPage"; // displayName 설정
 
 export default LoadingPage;
