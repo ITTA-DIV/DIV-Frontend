@@ -16,10 +16,7 @@ const AdminPage = () => {
 
   const tempdata = events.results.dedlines;
   const resultNum = 122;
-  const currentFilters = useSelector((state) => state.currentFilters);
-
   const [isModal, setisModal] = useState(false);
-
 
   return (
     <OuterFrame>

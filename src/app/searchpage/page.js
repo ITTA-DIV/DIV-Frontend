@@ -11,7 +11,7 @@ import { clearFilter } from "../actions/Actions";
 import { useDispatch } from "react-redux";
 
 const SearchPage = () => {
-  const [dataOrigin, setData] = useState([]);
+  const [dataOrigin, setData] = useState({content : []});
   const bannerImg = "images/SearchBanner.png";
   const dispatch = useDispatch();
   const tempdata = events.results.dedlines;
@@ -43,6 +43,7 @@ const SearchPage = () => {
         console.log(error);
       }
     };
+    handleSearch();
   }, [currentFilters]);
 
   return (
