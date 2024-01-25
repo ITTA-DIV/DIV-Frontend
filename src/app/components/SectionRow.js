@@ -63,6 +63,7 @@ const SectionRow = ({ data, title, subtitle }) => {
                 date={eventinfo.eventDateTimeString}
                 deadline={eventinfo.remainingDays}
                 poster_path={eventinfo.thumbnail}
+                eventId = {eventinfo.id}
               ></ProjectPost>
             );
           })}

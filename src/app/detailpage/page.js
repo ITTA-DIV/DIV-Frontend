@@ -12,27 +12,57 @@ import ic_backbutton from "images/ic_backbutton.png"
 import autherimg from "images/autherimg.png"
 import ic_speechbubble from "images/ic_speechbubble.png"
 import CommentPanel from "./CommentPanel";
+import { useRouter } from 'next/navigation';
 const DetailPage = () => {
 
-  const timedata = "11월 25일 (토) 02:00 ~ 11월 26일(일) 20:00"
-  const deadlinedata = "11월 25일 (토) 02:00 ~ 11월 26일(일) 20:00"
-  const pricedata = "무료"
-  const placedata = "서울 중구 소파로 138 남산 드라마센터"
-  const title = "뚝섬 재사용 장터"
-  const categorydata = "IT 분야"
-  const profilename = "한국 투자 증권 위원회"
+  const [dataOrigin, setData] = useState([]);
+  const router = useRouter();
+  const { eventId } = router.query;
+
+  // const timedata = "11월 25일 (토) 02:00 ~ 11월 26일(일) 20:00"
+  // const deadlinedata = "11월 25일 (토) 02:00 ~ 11월 26일(일) 20:00"
+  // const pricedata = "무료"
+  // const placedata = "서울 중구 소파로 138 남산 드라마센터"
+  // const title = "뚝섬 재사용 장터"
+  // const categorydata = "IT 분야"
+  // const profilename = "한국 투자 증권 위원회"
+  // const wrotedate = "Jun 19, 2019"
+  // const [content, setcontent] = useState("")
+  // const eventsubtitle = "밀라노에서 온 재홍, 런던으로 간 수지,경주에서 온 소영. 이방인 3인이 이야기하는 낯선 경험들."
+
+  const timedata = `${dataOrigin.eventApplyStartDate} ~ ${dataOrigin.eventApplyEndDate}`
+  const deadlinedata = `${dataOrigin.eventStartDate} ~ ${dataOrigin.eventEndData}`
+  const pricedata = dataOrigin.price
+  const placedata = dataOrigin.address
+  const title = dataOrigin.title;
+  const categorydata = dataOrigin.categoryName;
+  const profilename = dataOrigin.host
   const wrotedate = "Jun 19, 2019"
   const [content, setcontent] = useState("")
   const eventsubtitle = "밀라노에서 온 재홍, 런던으로 간 수지,경주에서 온 소영. 이방인 3인이 이야기하는 낯선 경험들."
+
   const commentCount = 7;
   const [isPanelOn, setisPanelOn] = useState(false);
 
   useEffect(() => {
-    fetch('./content.txt')
-  .then((r) => r.text())
-  .then(text  => {
-    setcontent(text);
-  })
+    const handleDetail = async (eventId) => {
+      try {
+        await fetch(`/api/v1/event/${eventId}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json; charset=utf-8",
+          },
+        })
+          .then((res) => res.json()) // 리턴값이 있으면 리턴값에 맞는 req 지정
+          .then((res) => {
+            console.log(res); // 리턴값에 대한 처리
+          });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+   handleDetail(eventId).then(res => setData(res.data));
   }, [])
 
   return (

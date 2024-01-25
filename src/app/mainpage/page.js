@@ -6,9 +6,11 @@ import SectionRow from "@/app/components/SectionRow";
 import { events } from "@/app/API";
 import Header from "../components/Header";
 import React,{useEffect,useState} from "react";
+
 const MainPage = () => {
 
   const [dataOrigin, setData] = useState([]);
+
 
   const setlist = [
     {title : "마감임박 행사들",subtitle : "마감이 얼마 안남았어요!"},

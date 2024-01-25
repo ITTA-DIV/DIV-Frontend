@@ -10,14 +10,20 @@ import {
 } from "@/CorgiUI/src";
 
 import LikeButton from "./LikeButton";
+import { useRouter } from 'next/navigation';
 
 const memberImage = "images/Member.png"
 
-const ProjectPost = ({title,category,date,deadline,poster_path}) => {
+const ProjectPost = ({title,category,date,deadline,poster_path,eventId}) => {
+
+  const router = useRouter();
+  
+
   return (
     <Motion.div
     onMouseOver={(event,ref) => Spring.scaleMotion(1.05,1.05,0,[15, 0.27, 55],ref,"change")}
     onMouseLeave = {(event,ref) => Spring.scaleMotion(1,1,0,[15, 0.27, 55],ref,"change")}
+    onClick = {() =>{router.push('/detailpage', `/detailpage/${eventId}`);}}
     >
     <Frame>
       <Inner>

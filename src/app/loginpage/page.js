@@ -2,14 +2,20 @@
 import styled from "styled-components";
 import Header from "../components/Header";
 import LoginButton from "../components/LoginButton";
-import React,{useState} from "react";
-const LoginPage = () => {
+import React, { useEffect, useState,forwardRef } from "react";
+const LoginPage =  forwardRef((props,ref) => {
 
   const maintext = "한번의 로그인으로\n당신의 열정을 공유하세요";
   const subtext = "당신의 열정을 기록하고, 공유하세요, 맞춤형 행사를 찾아보세요\n담앗콘이 당신의 빛나는 청춘과 함께합니다.";
   
   const clientID = "606562447967-0ibkhonkgjq05l5hahoejj0ncnh8iln5.apps.googleusercontent.com"
   const redirect_uri = "http://localhost:3000/loadingpage"
+
+  const [isLoading, setIsLoading] = useState(true); // Add loading state
+
+  useEffect(() => {
+    setIsLoading(false); // Mark loading as false when done
+  }, []);
 
   const handleGoogleLogin = () =>{
     window.location.href = `https://accounts.google.com/o/oauth2/v2/auth?
@@ -25,6 +31,8 @@ const LoginPage = () => {
 
 
   return (
+    <>
+    {isLoading ? null :
     <OuterFrame>
     <Header></Header>
     <PageSection>
@@ -38,9 +46,10 @@ const LoginPage = () => {
       </LoginButtonsFrame>
     </Frame>
     </PageSection>
-    </OuterFrame>
+    </OuterFrame>} 
+    </>
   );
-};
+});
 
 const PageSection = styled.div`
 position: absolute;
@@ -106,4 +115,9 @@ margin-top: 79px;
 gap: 22px;
 `;
 
+LoginPage.displayName = "LoginPage"; // displayName 설정
+
 export default LoginPage;
+
+
+
