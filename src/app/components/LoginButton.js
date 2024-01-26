@@ -19,6 +19,7 @@ const Logo = styled.img`
   left: 23px;
   width: 30px;
   height: 30px;
+  object-fit: cover;
 `;
 
 const Text = styled.text`

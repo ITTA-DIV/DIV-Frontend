@@ -46,6 +46,7 @@ const Logo = styled.img`
   width: 95px;
   height: 31px;
   margin-left: 43px;
+  object-fit: cover;
 `;
 
 const Tab = styled.div`
@@ -99,6 +100,7 @@ const SearchLogo = styled.img`
   margin-left: 14px;
   width: 21px;
   height: 21px;
+  object-fit: cover;
 `;
 
 const SearchPlaceHolder = styled.div`
@@ -127,6 +129,7 @@ height: 30px;
 margin-left: 630px;
 border-radius: 30px;
 background-image: url(${userProfile});
+object-fit: cover;
 `;
 
 const UserName = styled.div`

@@ -154,6 +154,7 @@ const CloseButton = styled.img`
   top: 36px;
   right: 36px;
   background: center/cover no-repeat;
+  object-fit: cover;
 `;
 
 const BannerFrame = styled.div`

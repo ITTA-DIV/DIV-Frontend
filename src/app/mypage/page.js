@@ -140,6 +140,7 @@ const Banner = styled.img`
   width: 100%;
   height: 323px;
   object-fit: cover;
+  object-fit: cover;
 `;
 
 const UserBannerFrame = styled.div`
@@ -171,6 +172,7 @@ const UserProfilePic = styled.img`
   border-radius: 60px;
   border-color: #3BC1C6;
   object-fit: cover;
+  
 `;
 
 const UserDataFrame = styled.div`
@@ -253,6 +255,7 @@ const UserDataSectionArrow = styled.img`
   margin-left: 87px;
   width: 9px;
   height: 15px;
+  object-fit: cover;
 `;
 
 const UserDataSectionCounter = styled.div`

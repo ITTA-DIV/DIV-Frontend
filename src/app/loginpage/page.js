@@ -84,6 +84,7 @@ const Background = styled.img`
 position: absolute;
 width: 100%;
 background: center/cover no-repeat;
+object-fit: cover;
 `;
 
 const Maintext = styled.text`

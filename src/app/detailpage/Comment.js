@@ -47,6 +47,7 @@ const Comment = ({
     width: 32px;
     border-radius: 32px;
     color: black;
+    object-fit: cover;
   `;
 
   const CommentAutherName = styled.div`

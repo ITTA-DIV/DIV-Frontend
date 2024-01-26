@@ -31,6 +31,7 @@ const Image = styled.img `
   width: 100%;
   height: 100%;
   background: center/cover no-repeat;
+  object-fit: cover;
 `;
 
 const InfoFrame = styled.div `
@@ -64,6 +65,7 @@ const EventDetailButton = styled.img `
   height: 55px;
   width: 122px;
   margin-top: 26px;
+  object-fit: cover;
 `;
 
 const EventLikeButton = styled.img `
@@ -74,6 +76,7 @@ const EventLikeButton = styled.img `
   height: 191.5px;
   width: 273px;
   background-color: white;
+  object-fit: cover;
 `;
 
 const Foreground = styled.div `

@@ -213,6 +213,7 @@ position: relative;
 width: 16px;
 height: 16px;
 margin-left: 5px;
+object-fit: cover;
 `;
 
 const CategoryHeaderText = styled.text`
@@ -256,6 +257,7 @@ position: relative;
 width: 10.5px;
 height: 7.5px;
 margin-left: 40px;
+object-fit: cover;
 `;
 
 const TextPanel = styled.div`
@@ -303,6 +305,7 @@ position: absolute;
 right: 0;
 width: 24.25px;
 height: 22.5px;
+object-fit: cover;
 `;
 
 const TextPanelTitle = styled.div`
@@ -328,6 +331,7 @@ position: relative;
 width: 54px;
 height: 54px;
 border-radius: 54px;
+object-fit: cover;
 `;
 
 const AutherProfileTextFrame = styled.div`
@@ -383,6 +387,7 @@ const CommentButtonIc = styled.img`
 position: absolute;
 width: 45px;  
 height: 45px;
+object-fit: cover;
 `;
 
 const CommentButtonCounter = styled.div`

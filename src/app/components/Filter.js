@@ -56,6 +56,7 @@ position: relative;
 width: 15px;
 height: 15px;
 background: center/cover no-repeat;
+object-fit: cover;
 `;
 
 export default Filter;
