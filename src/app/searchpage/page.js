@@ -29,7 +29,7 @@ const SearchPage = () => {
   // useEffect(() => {
   //   const handleSearch = async () => {
   //     try {
-  //       await fetch("http://localhost:8080/api/v1/event/search", {
+  //       await fetch("${process.env.NEXT_PUBLIC_API}/api/v1/event/search", {
   //         method: "GET",
   //         headers: {
   //           "Content-Type": "application/json; charset=utf-8",

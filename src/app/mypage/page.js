@@ -32,7 +32,7 @@ const MyPage = () => {
   useEffect(() => {
     const handleInit = async() => {
     try {
-      await fetch(`http://localhost:8080/api/v1/member/mypage`, {
+      await fetch(`${process.env.NEXT_PUBLIC_API}/api/v1/member/mypage`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json; charset=utf-8",

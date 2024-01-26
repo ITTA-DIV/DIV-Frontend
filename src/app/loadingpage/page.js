@@ -26,7 +26,7 @@ const LoadingPage = forwardRef((props, ref) => {
 
   const updateUserData = async (accessToken) =>{
     try{
-    await fetch("http://localhost:8080/api/v1/member", {
+    await fetch(`${process.env.NEXT_PUBLIC_API}/api/v1/member`, {
       method: "GET",
       headers: {
         "Authorization": `Bearer ${accessToken}`,
@@ -48,7 +48,7 @@ const LoadingPage = forwardRef((props, ref) => {
   useEffect(() => {
     const handleLoginPost = async (code) => {
       try {
-        await fetch("http://localhost:8080/api/v1/member/login/oauth/google", {
+        await fetch(`${process.env.NEXT_PUBLIC_API}/api/v1/member/login/oauth/google`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json; charset=utf-8",

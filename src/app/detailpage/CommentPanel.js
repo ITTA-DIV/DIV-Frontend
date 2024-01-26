@@ -30,7 +30,7 @@ const CommentPanel = ({event_id}) => {
     useEffect(() => {
         const handleLoadComments = async() => {
         try {
-          await fetch(`http://localhost:8080/api/v1/event/comment/${event_id}`, {
+          await fetch(`${process.env.NEXT_PUBLIC_API}/api/v1/event/comment/${event_id}`, {
             method: "GET",
             headers: {
               "Content-Type": "application/json; charset=utf-8",
