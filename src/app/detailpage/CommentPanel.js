@@ -2,29 +2,56 @@
 import styled from "styled-components";
 import React,{useState,useEffect} from "react";
 import Comment from "./Comment";
-const CommentPanel = () => {
+import { useSelector } from "react-redux";
+const CommentPanel = ({event_id}) => {
 
-    const comments = [
-        {
-            isMine : true,
-            message : "행사 기대되네요~!",
-            autherProfilePic : "images/AutherProfile2.png",
-            autherName : "코기",
-            wroteDate : "11:10 AM"
-        },
+    // const comments = [
+    //     {
+    //         isMine : true,
+    //         message : "행사 기대되네요~!",
+    //         autherProfilePic : "images/AutherProfile2.png",
+    //         autherName : "코기",
+    //         wroteDate : "11:10 AM"
+    //     },
 
-        {
-            isMine : false,
-            message : "투자에 관심있으신 분들은 참여하면 좋을것 같네요~!",
-            autherProfilePic : "images/AutherProfile1.png",
-            autherName : "Lion",
-            wroteDate : "11:10 AM"
+    //     {
+    //         isMine : false,
+    //         message : "투자에 관심있으신 분들은 참여하면 좋을것 같네요~!",
+    //         autherProfilePic : "images/AutherProfile1.png",
+    //         autherName : "Lion",
+    //         wroteDate : "11:10 AM"
+    //     }
+    // ]
+
+    const [comments, setcomments] = useState([])
+    const userProfile = useSelector((state)=>{state.userProfile});
+    const accessToken = useSelector((state)=>{state.accessToken});
+
+    useEffect(() => {
+        const handleLoadComments = async() => {
+        try {
+          await fetch(`http://localhost:8080/api/v1/event/comment/${event_id}`, {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json; charset=utf-8",
+              "Authorization": `Bearer ${accessToken}`
+            },
+          })
+          .then((res)=>res.json())
+          .then((res)=>{
+            setcomments(res.data);
+          })
+        } catch (error) {
+          console.log(error);
         }
-    ]
+      }
+      handleLoadComments();
+      }, [])
+
   return (
     <Frame>
         <CommentList>
-        {comments.slice(0).reverse().map((commentinfo,index) =>{return(<Comment key = {index} isMine={commentinfo.isMine} message={commentinfo.message} autherProfilePic={commentinfo.autherProfilePic} autherName={commentinfo.autherName} wroteDate={commentinfo.wroteDate}></Comment>)})}
+        {comments.slice(0).reverse().map((commentinfo,index) =>{return(<Comment key = {index} isMine={userProfile === commentinfo.writerProfile} message={commentinfo.content} autherProfilePic={commentinfo.writerProfile} autherName={commentinfo.writerName} wroteDate={commentinfo.creationTime}></Comment>)})}
         </CommentList>
         <CommentInput></CommentInput>
     </Frame>

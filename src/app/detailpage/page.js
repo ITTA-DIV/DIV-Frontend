@@ -19,16 +19,6 @@ const DetailPage = () => {
   const params = useSearchParams();
   const  eventId  = params.get('eventId');
 
-  // const timedata = "11월 25일 (토) 02:00 ~ 11월 26일(일) 20:00"
-  // const deadlinedata = "11월 25일 (토) 02:00 ~ 11월 26일(일) 20:00"
-  // const pricedata = "무료"
-  // const placedata = "서울 중구 소파로 138 남산 드라마센터"
-  // const title = "뚝섬 재사용 장터"
-  // const categorydata = "IT 분야"
-  // const profilename = "한국 투자 증권 위원회"
-  // const wrotedate = "Jun 19, 2019"
-  // const [content, setcontent] = useState("")
-  // const eventsubtitle = "밀라노에서 온 재홍, 런던으로 간 수지,경주에서 온 소영. 이방인 3인이 이야기하는 낯선 경험들."
 
   const timedata = `${dataOrigin.eventApplyStartDate} ~ ${dataOrigin.eventApplyEndDate}`
   const deadlinedata = `${dataOrigin.eventStartDate} ~ ${dataOrigin.eventEndData}`
@@ -46,7 +36,7 @@ const DetailPage = () => {
 
   useEffect(() => {
     const handleDetail = async (eventId) => {
-        const res = await fetch(`https://www.damoacon.shop/api/v1/event/${eventId}`, {
+        const res = await fetch(`http://localhost:8080/api/v1/event/${eventId}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json; charset=utf-8",
@@ -121,7 +111,7 @@ const DetailPage = () => {
       <Content>{content}</Content>
       </TextPanelFrame>
       {isPanelOn &&
-      <CommentPanel></CommentPanel>
+      <CommentPanel event_id={eventId}></CommentPanel>
       }
       <CommentFrame>
         <CommentButtonFrame onClick={() => setisPanelOn((prev) => !prev)}>

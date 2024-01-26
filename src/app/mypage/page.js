@@ -32,7 +32,7 @@ const MyPage = () => {
   useEffect(() => {
     const handleInit = async() => {
     try {
-      await fetch(`https://www.damoacon.shop/api/v1/member/mypage`, {
+      await fetch(`http://localhost:8080/api/v1/member/mypage`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json; charset=utf-8",

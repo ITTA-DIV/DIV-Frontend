@@ -21,7 +21,8 @@ const LikeButton = ({eventId}) => {
     setisLiked(currentLiked);
         try {
           if(currentLiked){
-          await fetch(`https://www.damoacon.shop/api/v1/heart/${eventId}`, {
+            
+          await fetch(`http://localhost:8080/api/v1/heart/${eventId}`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json; charset=utf-8",
@@ -29,7 +30,7 @@ const LikeButton = ({eventId}) => {
             },
           })}
           else{
-            await fetch(`https://www.damoacon.shop/api/v1/heart/${eventId}`, {
+            await fetch(`http://localhost:8080/api/v1/heart/${eventId}`, {
               method: "DELETE",
               headers: {
                 "Content-Type": "application/json; charset=utf-8",

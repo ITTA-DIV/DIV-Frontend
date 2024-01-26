@@ -52,7 +52,7 @@ const ProjectPost = ({
               <Line />
               <BottomFrame>
                 <MemberIcon alt="" src={memberImage} />
-                <LikeButton></LikeButton>
+                <LikeButton eventId={eventId}></LikeButton>
               </BottomFrame>
             </InfoFrame>
           </ForegroundFrame>

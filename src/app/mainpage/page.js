@@ -15,7 +15,7 @@ const MainPage = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch("https://www.damoacon.shop/api/v1/event",{
+      const res = await fetch("http://localhost:8080/api/v1/event",{
         method: "GET",
         headers: {
           "Content-Type": "application/json; charset=utf-8",
