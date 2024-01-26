@@ -19,7 +19,7 @@ export const checkLogIn = () => {
     } catch (error) {
         console.log("err-logout!")
         console.log(error)
-      handleLogOut();
+    //   handleLogOut();
       return false;
     }
   };
