@@ -56,7 +56,7 @@ const Tab = styled.div`
   flex-direction: row;
 `;
 
-const TabText = styled.p`
+const TabText = styled.div`
 position: relative;
 font-family: "PretendardBold";
 font-size: 15;
@@ -129,7 +129,7 @@ border-radius: 30px;
 background-image: url(${userProfile});
 `;
 
-const UserName = styled.p`
+const UserName = styled.div`
 position: relative;
 font-family: "PretendardBold";
 font-size: 15px;

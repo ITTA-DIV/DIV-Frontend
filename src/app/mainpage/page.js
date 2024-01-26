@@ -12,6 +12,8 @@ const MainPage = () => {
   const [dataOrigin, setData] = useState([]);
   const [user, setUser] = useState([]);
   const [profile, setProfile] = useState([]);
+  const categoryName = ["마감임박 행사들","무료 행사들","할인 행사들"];
+  const categorySubName = ["담앗콘이 엄선하여 분류한 카테고리들을 살펴보세요","담앗콘이 엄선하여 분류한 카테고리들을 살펴보세요","담앗콘이 엄선하여 분류한 카테고리들을 살펴보세요"];
 
   useEffect(() => {
     console.log(process.env.NEXT_PUBLIC_API)
@@ -42,8 +44,8 @@ const MainPage = () => {
                 <SectionRow
                   key={index}
                   data={outputData}
-                  title={"마감임박 행사들"}
-                  subtitle={"마감이 얼마 안남았어요!"}
+                  title={categoryName[index]}
+                  subtitle={categorySubName[index]}
                 ></SectionRow>
               );
             })}

@@ -79,7 +79,7 @@ const Frame = styled.div `
   flex-direction: column;
 `;
 
-const Title = styled.p `
+const Title = styled.div `
   position: relative;
   margin-left: 1px;
   font-family: "PretendardBold";
@@ -91,7 +91,7 @@ const Title = styled.p `
   }
 `;
 
-const SubTitle = styled.p `
+const SubTitle = styled.div `
   position: relative;
   margin-left: 3px;
   font-family: "PretendardSemiBold";
@@ -130,7 +130,7 @@ const Image = styled.img `
   object-fit: cover;
 `;
 
-const Name = styled.p `
+const Name = styled.div `
   position: relative;
   font-family: "PretendardSemiBold";
   font-size: 15px;

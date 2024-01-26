@@ -49,14 +49,14 @@ const Comment = ({
     color: black;
   `;
 
-  const CommentAutherName = styled.p`
+  const CommentAutherName = styled.div`
     position: relative;
     font-family: "PretendardSemiBold";
     font-size: 18px;
     color: black;
   `;
 
-  const CommentDate = styled.p`
+  const CommentDate = styled.div`
     position: relative;
     margin-top: 13px;
     font-family: "PretendardSemiBold";

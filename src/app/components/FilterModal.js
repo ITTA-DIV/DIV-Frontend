@@ -167,7 +167,7 @@ const BannerFrame = styled.div`
   background-color: var(--color-darkturquoise);
 `;
 
-const BannerText = styled.p`
+const BannerText = styled.div`
   position: relative;
   font-family: "PretendardBold";
   font-size: 20px;
@@ -202,7 +202,7 @@ const FiltersFrame = styled.div`
   margin-top: 16px;
 `;
 
-const Title = styled.p`
+const Title = styled.div`
   position: relative;
   margin-left: 1px;
   font-family: "PretendardBold";

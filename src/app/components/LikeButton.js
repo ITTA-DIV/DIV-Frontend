@@ -64,6 +64,7 @@ const LikeButtonFrame = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  pointer-events: fill;
 `;
 
 const LikeButtonOutline = styled.img`

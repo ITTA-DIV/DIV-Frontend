@@ -29,8 +29,6 @@ const ProjectPost = ({
     poster_path =  "images/now1.jpg" ;
   } 
 
-  console.log(poster_path);
-
   return (
     <Motion.div
       onMouseOver={(event, ref) =>
@@ -39,10 +37,10 @@ const ProjectPost = ({
       onMouseLeave={(event, ref) =>
         Spring.scaleMotion(1, 1, 0, [15, 0.27, 55], ref, "change")
       }
-      onClick={() => {
-        router.push(`/detailpage/?eventId=${eventId}`);
-      }}
     >
+      <UnderFrame onClick={() => {
+        router.push(`/detailpage/?eventId=${eventId}`);
+      }}></UnderFrame>
       <Frame>
         <Inner>
           <PosterImg alt="" src={poster_path} />
@@ -87,14 +85,18 @@ const Line = styled.div`
   background-color: white;
 `;
 
-const Category = styled.p`
+const Category = styled.div`
   font-size: 9px;
   font-family: "PretendardMedium";
 `;
 
-const Title = styled.p`
+const Title = styled.div`
+  width: 200px;
   font-size: 15px;
   font-family: "PretendardBold";
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 `;
 
 const Date = styled.div`
@@ -160,7 +162,7 @@ const ForegroundFrame = styled.div`
     #3bc1c6
   );
 `;
-const DeadLineText = styled.p`
+const DeadLineText = styled.div`
   font-size: 15px;
   font-family: "PretendardMedium";
   color: white;
@@ -191,6 +193,7 @@ const Frame = styled.div`
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
   display: flex;
   overflow: visible;
+  pointer-events: none;
 `;
 
 const Inner = styled.div`
@@ -199,6 +202,12 @@ const Inner = styled.div`
   height: 277px;
   border-radius: var(--br-6xs);
   overflow: hidden;
+`;
+
+const UnderFrame = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
 `;
 
 export default ProjectPost;

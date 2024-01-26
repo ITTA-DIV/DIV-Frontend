@@ -43,14 +43,14 @@ const InfoFrame = styled.div `
   width: 300px;
 `;
 
-const EventTitle = styled.p `
+const EventTitle = styled.div `
   position: relative;
   font-family: "PretendardBold";
   font-size: 40px;
   color: white;
 `;
 
-const EventSubTitle = styled.p `
+const EventSubTitle = styled.div `
   position: relative;
   font-family: "PretendardSemiBold";
   font-size: 10px;

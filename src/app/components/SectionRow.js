@@ -14,12 +14,9 @@ import {
 
 const SectionRow = ({ data, title, subtitle }) => {
 
-
-
   const containerRef = useRef(null);
   const [sliderOn, setsliderOn] = useState(false);
   const [mousePosition, setmousePosition] = useState(0);
-
 
   const handleWheel = (e) => {
     const deltaX = mousePosition - e.clientX;
@@ -79,7 +76,7 @@ const Frame = styled.div`
   flex-direction: column;
 `;
 
-const Title = styled.p`
+const Title = styled.div`
   position: relative;
   margin-left: 1px;
   font-family: "PretendardBold";
@@ -91,7 +88,7 @@ const Title = styled.p`
   }
 `;
 
-const SubTitle = styled.p`
+const SubTitle = styled.div`
   position: relative;
   margin-left: 3px;
   font-family: "PretendardSemiBold";

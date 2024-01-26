@@ -69,12 +69,12 @@ const Line = styled.div`
   background-color: white;
 `;
 
-const Category = styled.p`
+const Category = styled.div`
   font-size: 9px;
   font-family: "PretendardMedium";
 `;
 
-const Title = styled.p`
+const Title = styled.div`
   font-size: 15px;
   font-family: "PretendardBold";
 `;
@@ -145,7 +145,7 @@ const ForegroundFrame = styled.div`
     #3bc1c6
   );
 `;
-const DeadLineText = styled.p`
+const DeadLineText = styled.div`
   font-size: 15px;
   font-family: "PretendardMedium";
   color: white;

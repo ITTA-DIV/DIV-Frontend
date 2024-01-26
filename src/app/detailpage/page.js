@@ -305,7 +305,7 @@ width: 24.25px;
 height: 22.5px;
 `;
 
-const TextPanelTitle = styled.p`
+const TextPanelTitle = styled.div`
 position: relative;
 margin-top: 19px;
 font-family: "PretendardSemiBold";
@@ -337,21 +337,21 @@ margin-left: 17px;
 gap:4px
 `;
 
-const AutherProfileName = styled.p`
+const AutherProfileName = styled.div`
 position: relative;
 font-family: "PretendardSemiBold";
 color: black;
 font-size: 19;
 `;
 
-const AutherProfileDate = styled.p`
+const AutherProfileDate = styled.div`
 position: relative;
 font-family: "PretendardRegular";
 color: #818F98;
 font-size: 17;
 `;
 
-const Content = styled.p`
+const Content = styled.div`
 position: relative;
 margin-top: 27px;
 font-family: "PretendardRegular";
