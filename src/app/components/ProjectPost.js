@@ -23,6 +23,12 @@ const ProjectPost = ({
   eventId,
 }) => {
   const router = useRouter();
+
+  if(!(poster_path.includes("https://")))
+  {
+    poster_path =  "images/now1.jpg" ;
+  } 
+
   console.log(poster_path);
 
   return (
@@ -39,7 +45,7 @@ const ProjectPost = ({
     >
       <Frame>
         <Inner>
-          <PosterImg alt="" src={() =>{ {if(!(poster_path.includes("https://"))){return "images/now1.jpg"} else {return poster_path}}}} />
+          <PosterImg alt="" src={poster_path} />
           <ForegroundFrame>
             <InfoFrame>
               <TextFrame>
