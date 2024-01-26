@@ -2,6 +2,7 @@ export const checkLogIn = () => {
   const handleRefreshToken = async () => {
     const refreshToken = localStorage.getItem('refreshToken')
     console.log(refreshToken)
+    if(refreshToken != null){
     try {
       await fetch(`${process.env.NEXT_PUBLIC_API}/api/v1/member/refresh`, {
         method: "GET",
@@ -22,6 +23,8 @@ export const checkLogIn = () => {
     //   handleLogOut();
       return false;
     }
+  }
+  else{return false}
   };
   return handleRefreshToken();
 };
