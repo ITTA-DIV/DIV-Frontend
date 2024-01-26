@@ -7,7 +7,7 @@ import {
   LOG_OUT,
   SET_ACCESS_TOKEN,
   SET_USER_NAME,
-  SET_USER_PROFILE,
+  LOGIN_CHECK,
   SET_REFRESH_TOKEN,
 } from "../actions/Actions";
 const initialState = {
@@ -28,7 +28,7 @@ const initialState = {
   currentUrl: "/mainpage",
   isLogIn: false,
   accessToken: "",
-  refreashToken: "",
+  refreshToken: "",
   userName: "user",
   userProfile: "images/Member.png",
 };
@@ -82,14 +82,14 @@ const rootReducer = (state = initialState, action) => {
     case SET_REFRESH_TOKEN:
       return {
         ...state,
-        refreashToken: action.payload,
+        refreshToken: action.payload,
       };
     case SET_USER_NAME:
       return {
         ...state,
         userName: action.payload,
       };
-    case SET_USER_PROFILE:
+    case LOGIN_CHECK:
       return {
         ...state,
         userProfile: action.payload,

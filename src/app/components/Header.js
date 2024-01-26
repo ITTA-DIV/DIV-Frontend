@@ -5,19 +5,46 @@ import React,{useState,useEffect} from "react";
 import { addFilter} from "../actions/Actions";
 import { useRouter } from 'next/navigation';
 import { useDispatch,useSelector } from "react-redux";
+import { isLogIn } from "../helper/helper";
 const Header = () => {
 
   const logoImg = "images/LogoText.png"
   const magnifierImg = "images/Magnifier_Emoji.png"
   const memberImg = "images/Member.png"
-  const isLoggedIn = useSelector((state) => state.isLogIn);
-  const userName = useSelector((state)=> state.userName);
-  const userProfile = useSelector((state)=> state.userProfile);
+  const [isLoggedIn, setisLoggedIn] = useState(false)
+  const [userName,setuserName] = useState("");
+  const [userProfile,setuserProfile] = useState("");
 
   const router = useRouter();
   const dispatch = useDispatch();
 
   const [inputText, setInputText] = useState("");
+
+  useEffect(() => {
+    setisLoggedIn(isLogIn());
+  }, [])
+
+  useEffect(() => {
+    const loadUserProfile = async (accessToken) =>{
+      try{
+      await fetch(`${process.env.NEXT_PUBLIC_API}/api/v1/member`, {
+        method: "GET",
+        headers: {
+          "Authorization": `Bearer ${accessToken}`,
+        },
+      })
+      .then((res)=>res.json())
+      .then((res)=>{
+        setuserName(res.data.username);
+        setuserProfile(res.data.profile)
+      })
+    }
+    catch(error){
+      console.log(error);
+    }
+    }
+    if(isLogIn){loadUserProfile(localStorage.getItem("accessToken"))}
+  }, [])
   
   const handleSubmit = (event) =>{
     if(event.key === "Enter") {
@@ -147,7 +174,7 @@ font-size: 15px;
       </SearchFieldFrame>
       <Tab>
         <TabText>홈페이지</TabText>
-        <TabText>마이페이지</TabText>
+        <TabText onClick={() => router.push("/mypage")}>마이페이지</TabText>
         <TabText>등록하기</TabText>
       </Tab>
       <UserFrame>

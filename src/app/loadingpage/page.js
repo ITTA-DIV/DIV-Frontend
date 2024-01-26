@@ -3,7 +3,7 @@ import React, { useEffect, useState, forwardRef } from "react";
 import { useRouter } from "next/navigation";
 import { logIn } from "../actions/Actions";
 import { useDispatch } from "react-redux";
-import { setUserName,setUserProfile,setAccessToken,setRefreashToken } from "../actions/Actions";
+import { setUserName,setUserProfile,setAccessToken,setRefreshToken } from "../actions/Actions";
 const LoadingPage = forwardRef((props, ref) => {
   const router = useRouter();
 
@@ -24,27 +24,6 @@ const LoadingPage = forwardRef((props, ref) => {
     router.push("/mainpage");
   };
 
-  const updateUserData = async (accessToken) =>{
-    try{
-    await fetch(`${process.env.NEXT_PUBLIC_API}/api/v1/member`, {
-      method: "GET",
-      headers: {
-        "Authorization": `Bearer ${accessToken}`,
-      },
-    })
-    .then((res)=>res.json())
-    .then((res)=>{
-      console.log(accessToken);
-      console.log(res);
-      dispatch(setUserName(res.data.username))
-      dispatch(setUserProfile(res.data.profile))
-    })
-  }
-  catch(error){
-    console.log(error);
-  }
-  }
-
   useEffect(() => {
     const handleLoginPost = async (code) => {
       try {
@@ -59,9 +38,9 @@ const LoadingPage = forwardRef((props, ref) => {
           .then((res) => {
           const accessToken = res.data.accessToken;
           const refreshToken = res.data.refreshToken;
-          dispatch(setAccessToken(accessToken));
-          dispatch(setRefreashToken(refreshToken));
-          updateUserData(accessToken);
+          localStorage.setItem('accessToken',accessToken);
+          localStorage.setItem('refreshToken',refreshToken);
+          
           });
         handleHome();
       } catch (error) {

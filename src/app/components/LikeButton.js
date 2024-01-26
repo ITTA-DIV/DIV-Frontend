@@ -8,48 +8,62 @@ import {
   Tween,
   Easetype,
 } from "@/CorgiUI/src";
-import React,{useState} from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import { useRouter } from "next/navigation";
+import { isLogIn } from "../helper/helper";
 
 const heartImg = "images/heart.png";
-const heartFillImg = "images/heartfill.png"; 
+const heartFillImg = "images/heartfill.png";
 
-const LikeButton = ({eventId}) => {
+const LikeButton = ({ eventId }) => {
+  const router = useRouter();
   const accessToken = useSelector((state) => state.accessToken);
-  const handleClick = async (event,currentLiked) => {
-    currentLiked = !currentLiked
-    setisLiked(currentLiked);
-        try {
-          if(currentLiked){
-          await fetch(`${process.env.NEXT_PUBLIC_API}/api/v1/heart/${eventId}`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json; charset=utf-8",
-              "Authorization": `Bearer ${accessToken}`
-            },
-          })}
-          else{
-            await fetch(`${process.env.NEXT_PUBLIC_API}/api/v1/heart/${eventId}`, {
+
+  const handleClick = async (event, currentLiked) => {
+    if (!isLogIn) {
+      router.push("/loginpage");
+    } else {
+      currentLiked = !currentLiked;
+      setisLiked(currentLiked);
+      try {
+        if (currentLiked) {
+          await fetch(
+            `${process.env.NEXT_PUBLIC_API}/api/v1/heart/${eventId}`,
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json; charset=utf-8",
+                Authorization: `Bearer ${accessToken}`,
+              },
+            }
+          );
+        } else {
+          await fetch(
+            `${process.env.NEXT_PUBLIC_API}/api/v1/heart/${eventId}`,
+            {
               method: "DELETE",
               headers: {
                 "Content-Type": "application/json; charset=utf-8",
-                "Authorization": `Bearer ${accessToken}`
+                Authorization: `Bearer ${accessToken}`,
               },
-            })
-          }
-        } catch (error) {
-          console.log(error);
+            }
+          );
         }
+      } catch (error) {
+        console.log(error);
+      }
+    }
   };
 
-  const [isLiked, setisLiked] = useState(false)
+  const [isLiked, setisLiked] = useState(false);
 
   return (
-    <LikeButtonFrame onClick={(event) => handleClick(event,isLiked)}>
+    <LikeButtonFrame onClick={(event) => handleClick(event, isLiked)}>
       {isLiked ? (
-        <LikeButtonOutline src= {heartFillImg}></LikeButtonOutline>
+        <LikeButtonOutline src={heartFillImg}></LikeButtonOutline>
       ) : (
-        <LikeButtonFill src= {heartImg}></LikeButtonFill>
+        <LikeButtonFill src={heartImg}></LikeButtonFill>
       )}
     </LikeButtonFrame>
   );

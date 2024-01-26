@@ -13,6 +13,7 @@ import autherimg from "images/autherimg.png"
 import ic_speechbubble from "images/ic_speechbubble.png"
 import CommentPanel from "./CommentPanel";
 import { useRouter,useSearchParams } from 'next/navigation';
+import { checkLogIn } from "../helper/helper";
 const DetailPage = () => {
 
   const [dataOrigin, setData] = useState([]);
@@ -33,6 +34,10 @@ const DetailPage = () => {
 
   const commentCount = 7;
   const [isPanelOn, setisPanelOn] = useState(false);
+
+  useEffect(() => {
+    checkLogIn();
+    }, [])
 
   useEffect(() => {
     const handleDetail = async (eventId) => {

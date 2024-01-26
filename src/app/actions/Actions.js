@@ -46,7 +46,7 @@ export const setAccessToken = (accessToken) => ({
   payload: accessToken,
 });
 
-export const setRefreashToken = (refreshToken) => ({
+export const setRefreshToken = (refreshToken) => ({
   type: SET_REFRESH_TOKEN,
   payload: refreshToken,
 });

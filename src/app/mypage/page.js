@@ -5,6 +5,9 @@ import React, { useEffect, useState } from "react";
 import { events } from "@/app/API";
 import ProjectPost from "../components/ProjectPost";
 import { useSelector } from "react-redux";
+import { checkLogIn } from "../helper/helper";
+import { useRouter } from "next/navigation";
+
 const MyPage = () => {
 
   const tempdata = events.results.dedlines;
@@ -17,6 +20,11 @@ const MyPage = () => {
   const profilePic = useSelector((state) => state.userProfile)
   const [interests, setinterests] = useState([])
   const [heartEvents, setheartEvents] = useState([])
+  const rounter = useRouter();
+
+  useEffect(() => {
+  if(!checkLogIn()){rounter.push("/loginpage")}
+  }, [])
 
   const formatDate = (dateString) =>{
     const date = new Date(dateString);

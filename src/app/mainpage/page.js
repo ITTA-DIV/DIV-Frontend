@@ -7,6 +7,7 @@ import { events } from "@/app/API";
 import Header from "../components/Header";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { checkLogIn } from "../helper/helper";
 
 const MainPage = () => {
   const [dataOrigin, setData] = useState([]);
@@ -14,6 +15,10 @@ const MainPage = () => {
   const [profile, setProfile] = useState([]);
   const categoryName = ["마감임박 행사들","무료 행사들","할인 행사들"];
   const categorySubName = ["담앗콘이 엄선하여 분류한 카테고리들을 살펴보세요","담앗콘이 엄선하여 분류한 카테고리들을 살펴보세요","담앗콘이 엄선하여 분류한 카테고리들을 살펴보세요"];
+
+  useEffect(() => {
+  checkLogIn();
+  }, [])
 
   useEffect(() => {
     console.log(process.env.NEXT_PUBLIC_API)

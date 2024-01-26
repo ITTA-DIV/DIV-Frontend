@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Header from "../components/Header";
 import LoginButton from "../components/LoginButton";
 import React, { useEffect, useState,forwardRef } from "react";
+import { checkLogIn } from "../helper/helper";
 const LoginPage =  forwardRef((props,ref) => {
 
   const maintext = "한번의 로그인으로\n당신의 열정을 공유하세요";
@@ -12,6 +13,10 @@ const LoginPage =  forwardRef((props,ref) => {
   const redirect_uri = "http://localhost:3000/loadingpage"
 
   const [isLoading, setIsLoading] = useState(true); // Add loading state
+
+  useEffect(() => {
+    checkLogIn();
+    }, [])
 
   useEffect(() => {
     setIsLoading(false); // Mark loading as false when done
