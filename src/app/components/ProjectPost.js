@@ -23,6 +23,7 @@ const ProjectPost = ({
   eventId,
 }) => {
   const router = useRouter();
+  console.log(poster_path);
 
   return (
     <Motion.div
