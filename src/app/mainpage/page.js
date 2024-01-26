@@ -14,6 +14,7 @@ const MainPage = () => {
   const [profile, setProfile] = useState([]);
 
   useEffect(() => {
+    console.log(process.env.NEXT_PUBLIC_API)
     const fetchData = async () => {
       const res = await fetch(`${process.env.NEXT_PUBLIC_API}/api/v1/event`,{
         method: "GET",
