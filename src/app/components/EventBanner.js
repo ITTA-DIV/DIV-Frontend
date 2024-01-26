@@ -4,7 +4,7 @@ import styled from "styled-components";
 const EventBanner = () => {
     
   const detailButtonImg = "images/DetailButton.png"
-  const eventImg = "images/EventImage.png"
+  const eventImg = "images/EventImage.jpg"
 
   return (
     <Frame>

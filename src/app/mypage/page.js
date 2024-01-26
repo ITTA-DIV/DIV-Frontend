@@ -9,7 +9,7 @@ const MyPage = () => {
 
   const tempdata = events.results.dedlines;
 
-  const img_mypage_banner = "images/img_mypage_banner.png"
+  const img_mypage_banner = "images/img_mypage_banner.jpg"
   const img_mypage_profilepic = "images/img_mypage_profilepic.png"
   const ic_arrow_black = "images/ic_arrow_black.png"
   const accessToken = useSelector((state) => state.accessToken)
