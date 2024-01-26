@@ -39,7 +39,7 @@ const ProjectPost = ({
     >
       <Frame>
         <Inner>
-          <PosterImg alt="" src={() =>{ if(!poster_path.includes("https://")){return "images/now1.jpg"} else {return poster_path}}} />
+          <PosterImg alt="" src={() =>{ {if(!(poster_path.includes("https://"))){return "images/now1.jpg"} else {return poster_path}}}} />
           <ForegroundFrame>
             <InfoFrame>
               <TextFrame>
