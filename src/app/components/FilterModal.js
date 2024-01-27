@@ -145,6 +145,7 @@ const Frame = styled.div`
   border-radius: 30px;
   padding-top: 36px;
   padding-bottom: 36px;
+  overflow: scroll;
 `;
 
 const CloseButton = styled.img`

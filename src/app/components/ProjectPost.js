@@ -21,6 +21,7 @@ const ProjectPost = ({
   deadline,
   poster_path,
   eventId,
+  currentLiking = false
 }) => {
   const router = useRouter();
 
@@ -57,7 +58,7 @@ const ProjectPost = ({
               <Line />
               <BottomFrame>
                 <MemberIcon alt="" src={memberImage} />
-                <LikeButton eventId={eventId}></LikeButton>
+                <LikeButton eventId={eventId} currentLiking = {currentLiking}></LikeButton>
               </BottomFrame>
             </InfoFrame>
           </ForegroundFrame>

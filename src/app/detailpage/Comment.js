@@ -63,6 +63,7 @@ const Comment = ({
     font-family: "PretendardSemiBold";
     font-size: 18px;
     color: #969495;
+    text-align: end;
   `;
 
   return (

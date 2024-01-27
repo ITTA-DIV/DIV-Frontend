@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import { events } from "@/app/API";
 import ProjectPost from "../components/ProjectPost";
 import { useSelector } from "react-redux";
-import { checkLogIn } from "../helper/helper";
+import { checkLogIn,isLogIn } from "../helper/helper";
 import { useRouter } from "next/navigation";
 
 const MyPage = () => {
@@ -13,14 +13,34 @@ const MyPage = () => {
   const tempdata = events.results.dedlines;
 
   const img_mypage_banner = "images/img_mypage_banner.jpg"
-  const img_mypage_profilepic = "images/img_mypage_profilepic.png"
   const ic_arrow_black = "images/ic_arrow_black.png"
-  const accessToken = useSelector((state) => state.accessToken)
-  const nickname = useSelector((state) => state.userName)
-  const profilePic = useSelector((state) => state.userProfile)
+  const [userName,setuserName] = useState("");
+  const [userProfile,setuserProfile] = useState("");
   const [interests, setinterests] = useState([])
   const [heartEvents, setheartEvents] = useState([])
   const rounter = useRouter();
+
+  useEffect(() => {
+    const loadUserProfile = async () =>{
+      try{
+      await fetch(`${process.env.NEXT_PUBLIC_API}/api/v1/member`, {
+        method: "GET",
+        headers: {
+          "Authorization": `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      })
+      .then((res)=>res.json())
+      .then((res)=>{
+        setuserName(res.data.username);
+        setuserProfile(res.data.profile)
+      })
+    }
+    catch(error){
+      console.log(error);
+    }
+    }
+    if(isLogIn){loadUserProfile()}
+  }, [])
 
   useEffect(() => {
   if(!checkLogIn()){rounter.push("/loginpage")}
@@ -44,7 +64,7 @@ const MyPage = () => {
         method: "GET",
         headers: {
           "Content-Type": "application/json; charset=utf-8",
-          "Authorization": `Bearer ${accessToken}`
+          "Authorization": `Bearer ${localStorage.getItem("accessToken")}`
         },
       })
       .then((res)=>res.json())
@@ -68,7 +88,7 @@ const MyPage = () => {
           <UserBannerFrame>
             <UserBanner>
               <UserDataFrame>
-                <UserName>{nickname}</UserName>
+                <UserName>{userName}</UserName>
                 <UserTagsList>
                   {interests.map((interest,index)=>{
                     return (<UserTag key = {index}>{interest.category_name}</UserTag>)
@@ -89,7 +109,7 @@ const MyPage = () => {
                   })}
                 </UserDataSectionGrid>
             </UserBanner>
-            <UserProfilePic src = {img_mypage_profilepic} ></UserProfilePic>
+            <UserProfilePic src = {userProfile} ></UserProfilePic>
           </UserBannerFrame>
           <BookmarkFrame>
           <Title>
@@ -106,6 +126,7 @@ const MyPage = () => {
                   date={formatDate(eventinfo.startDate)}
                   deadline={eventinfo.remainDate}
                   poster_path={eventinfo.thumbnail}
+                  currentLiking = {true}
                 ></ProjectPost>
               );
             })}

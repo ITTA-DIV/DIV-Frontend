@@ -1,9 +1,9 @@
 "use client";
 import styled from "styled-components";
 import React from "react";
-import { removeFilter } from "../actions/Actions";
+import { removeDisplayFilter, removeFilter } from "../actions/Actions";
 import { useDispatch } from "react-redux";
-const Filter = ({ title,types,values }) => {
+const Filter = ({ title,types}) => {
 
   const deleteButtonImg = "/images/ic_CloseButton.png" 
 
@@ -13,6 +13,7 @@ const Filter = ({ title,types,values }) => {
     types.map((type,index)=>{
       dispatch(removeFilter(type))
     })
+    dispatch(removeDisplayFilter(title,types))
   };
 
   return (

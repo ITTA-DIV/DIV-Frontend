@@ -2,7 +2,7 @@
 import styled from "styled-components";
 // import { useNavigate } from 'react-router-dom';
 import React,{useState,useEffect} from "react";
-import { addFilter} from "../actions/Actions";
+import { addDisplayFilter, addFilter} from "../actions/Actions";
 import { useRouter } from 'next/navigation';
 import { useDispatch,useSelector } from "react-redux";
 import { isLogIn } from "../helper/helper";
@@ -12,8 +12,8 @@ const Header = () => {
   const magnifierImg = "images/Magnifier_Emoji.png"
   const memberImg = "images/Member.png"
   const [isLoggedIn, setisLoggedIn] = useState(false)
-  const [userName,setuserName] = useState("");
-  const [userProfile,setuserProfile] = useState("");
+  const [userName,setuserName] = useState("로그인 하기");
+  const [userProfile,setuserProfile] = useState("images/Member.png");
 
   const router = useRouter();
   const dispatch = useDispatch();
@@ -49,121 +49,14 @@ const Header = () => {
   const handleSubmit = (event) =>{
     if(event.key === "Enter") {
       router.push("/searchpage")
-      dispatch(addFilter("검색어 : "+inputText,"keywords",inputText))
+      dispatch(addFilter("keywords",inputText))
+      dispatch(addDisplayFilter("검색어 : "+inputText,"keywords"))
     }
   }
 
   const handleOnClickLogin = () =>{
       router.push("/loginpage")
   }
-
-  const Frame = styled.div `
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  height: 65px;
-  width: 100%;
-  background-color: white;
-  white-space: nowrap;
-`;
-
-const Logo = styled.img`
-  position: relative;
-  width: 95px;
-  height: 31px;
-  margin-left: 43px;
-  object-fit: cover;
-`;
-
-const Tab = styled.div`
-  position: relative;
-  display: flex;
-  margin-left: 66px;
-  gap: 60px;
-  flex-direction: row;
-`;
-
-const TabText = styled.div`
-position: relative;
-font-family: "PretendardBold";
-font-size: 15;
-`;
-
-const SearchFieldFrame = styled.div`
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-left: 29px;
-  min-width: 300px;
-  width: 399px;
-  height: 39px;
-  border-radius: 50px;
-  background-color: var(--color-darkturquoise);
-  border: none;
-`;
-
-const SearchField = styled.input`
-  position: relative;
-  margin-left: 11px;
-  width: 353px;
-  height: 100%;
-  font-family: "PretendardBold";
-  font-size: 15;
-  color: white;
-  outline: none;
-  box-shadow: none;
-  border: none;
-  background: transparent;
-
-  &::placeholder{
-    color: white;
-  }
-`;
-
-const SearchLogo = styled.img`
-  position: relative;
-  margin-left: 14px;
-  width: 21px;
-  height: 21px;
-  object-fit: cover;
-`;
-
-const SearchPlaceHolder = styled.div`
-  position: relative;
-  margin-left: 11px;
-  font-family: "PretendardBold";
-  font-size: 15;
-  color: white;
-`;
-
-
-const UserFrame = styled.div`
-position: absolute;
-right: 50px;
-display: flex;
-flex-direction: row;
-align-items: center;
-flex-direction: row;
-gap:11px;
-`;
-
-const ProfilePic = styled.img`
-position: relative;
-width: 30px;
-height: 30px;
-margin-left: 630px;
-border-radius: 30px;
-background-image: url(${userProfile});
-object-fit: cover;
-`;
-
-const UserName = styled.div`
-position: relative;
-font-family: "PretendardBold";
-font-size: 15px;
-`;
 
   return (
     <Frame>
@@ -194,5 +87,112 @@ font-size: 15px;
     </Frame>
   );
 };
+
+const Frame = styled.div `
+position: relative;
+display: flex;
+flex-direction: row;
+align-items: center;
+height: 65px;
+width: 100%;
+background-color: white;
+white-space: nowrap;
+`;
+
+const Logo = styled.img`
+position: relative;
+width: 95px;
+height: 31px;
+margin-left: 43px;
+object-fit: cover;
+`;
+
+const Tab = styled.div`
+position: relative;
+display: flex;
+margin-left: 66px;
+gap: 60px;
+flex-direction: row;
+`;
+
+const TabText = styled.div`
+position: relative;
+font-family: "PretendardBold";
+font-size: 15;
+`;
+
+const SearchFieldFrame = styled.div`
+position: relative;
+display: flex;
+flex-direction: row;
+align-items: center;
+margin-left: 29px;
+min-width: 300px;
+width: 399px;
+height: 39px;
+border-radius: 50px;
+background-color: var(--color-darkturquoise);
+border: none;
+`;
+
+const SearchField = styled.input`
+position: relative;
+margin-left: 11px;
+width: 353px;
+height: 100%;
+font-family: "PretendardBold";
+font-size: 15;
+color: white;
+outline: none;
+box-shadow: none;
+border: none;
+background: transparent;
+
+&::placeholder{
+  color: white;
+}
+`;
+
+const SearchLogo = styled.img`
+position: relative;
+margin-left: 14px;
+width: 21px;
+height: 21px;
+object-fit: cover;
+`;
+
+const SearchPlaceHolder = styled.div`
+position: relative;
+margin-left: 11px;
+font-family: "PretendardBold";
+font-size: 15;
+color: white;
+`;
+
+
+const UserFrame = styled.div`
+position: absolute;
+right: 50px;
+display: flex;
+flex-direction: row;
+align-items: center;
+flex-direction: row;
+gap:11px;
+`;
+
+const ProfilePic = styled.img`
+position: relative;
+width: 30px;
+height: 30px;
+margin-left: 630px;
+border-radius: 30px;
+object-fit: cover;
+`;
+
+const UserName = styled.div`
+position: relative;
+font-family: "PretendardBold";
+font-size: 15px;
+`;
 
 export default Header;

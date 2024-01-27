@@ -9,22 +9,25 @@ import {
   SET_USER_NAME,
   LOGIN_CHECK,
   SET_REFRESH_TOKEN,
+  ADD_DISPLAY_FILTER,
+  REMOVE_DISPLAY_FILTER
 } from "../actions/Actions";
 const initialState = {
   currentFilters: {
-    keywords: { title: null, value: null },
-    startDate: { title: null, value: null },
-    endDate: { title: null, value: null },
-    address: { title: null, value: null },
-    type: { title: null, value: null },
-    location: { title: null, value: null },
-    price: { title: null, value: null },
-    category_name: { title: null, value: null },
-    free: { title: null, value: null },
-    notFree: { title: null, value: null },
-    minPrice: { title: null, value: null },
-    maxPrice: { title: null, value: null },
+    keywords: null,
+    startDate: null,
+    endDate: null,
+    address: null,
+    type: null,
+    location: null,
+    price: null,
+    category_name: null,
+    free: null,
+    notFree: null,
+    minPrice: null,
+    maxPrice: null,
   },
+  currentDisplayFilters : [],
   currentUrl: "/mainpage",
   isLogIn: false,
   accessToken: "",
@@ -39,25 +42,48 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         currentFilters: {
-          ...prevDictionary,
-          [action.payload.filterType]: {
-            title: action.payload.filterTitle,
-            value: action.payload.filterValue,
-          },
+          ...state.currentFilters,
+          [action.payload.filterType]: action.payload.filterValue,
         },
       };
     case REMOVE_FILTER:
       return {
         ...state,
         currentFilters: {
-          ...prevDictionary,
-          [action.payload.filterType]: { title: null, value: null },
+          ...state.currentFilters,
+          [action.payload]: null ,
         },
       };
+      case REMOVE_DISPLAY_FILTER:
+        return {
+          ...state,
+          currentDisplayFilters: state.currentDisplayFilters.filter(
+            (filterValue) => filterValue !== action.payload
+          ),
+        };
+        case ADD_DISPLAY_FILTER:
+          return {
+            ...state,
+            currentDisplayFilters: [...state.currentDisplayFilters, action.payload],
+          };
     case CLEAR_FILTER:
       return {
         ...state,
-        currentFilters: [],
+        currentFilters: {
+          keywords: null,
+          startDate: null,
+          endDate: null,
+          address: null,
+          type: null,
+          location: null,
+          price: null,
+          category_name: null,
+          free: null,
+          notFree: null,
+          minPrice: null,
+          maxPrice: null,
+        },
+        currentDisplayFilters: []
       };
     case CHANGE_URL:
       return {

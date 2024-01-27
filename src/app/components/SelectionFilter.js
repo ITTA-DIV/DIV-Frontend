@@ -1,26 +1,26 @@
 "use client";
 import styled from "styled-components";
 import React, { useState } from "react";
-import { addFilter, removeFilter } from "../actions/Actions";
+import { addDisplayFilter, addFilter, removeDisplayFilter, removeFilter } from "../actions/Actions";
 import { useSelector,useDispatch } from "react-redux";
 const SelectionFilter = ({ title,types,values }) => {
 
   const dispatch = useDispatch();
-  const currentFilters = useSelector((state) => state.currentFilters);
+  const currentDisplayFilters = useSelector((state) => state.currentDisplayFilters);
+  const selectionActiveImg = "images/ic_Selection_Active.png"
+  const selectionUnactiveImg = "images/ic_Selection_Unactive.png"
 
   const [selected, setselected] = useState(
-    currentFilters.includes(title) ? true : false
+    currentDisplayFilters.includes(title) ? true : false
   );
 
   const handleClick = () => {
     types.map((type,index)=>{
-      dispatch(selected ? removeFilter(type) : addFilter(title,type,values[index]))
+      dispatch(selected ? removeFilter(type) : addFilter(type,values[index]))
     })
+    dispatch(selected ? removeDisplayFilter(title,types) : addDisplayFilter(title,types))
     setselected(!selected);
   };
-
-  const selectionActiveImg = "images/ic_Selection_Active.png"
-  const selectionUnactiveImg = "images/ic_Selection_Unactive.png"
 
   return (
     <FilterFrame onClick={handleClick}>

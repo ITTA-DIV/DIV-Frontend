@@ -4,10 +4,10 @@ export const checkLogIn = () => {
     console.log(refreshToken)
     if(refreshToken != null){
     try {
+        console.log("fetch")
       await fetch(`${process.env.NEXT_PUBLIC_API}/api/v1/member/refresh`, {
         method: "GET",
         headers: {
-          "Content-Type" : "application/json; charset=utf-8",
           "Authorization-refresh" : `Bearer ${refreshToken}`,
         },
       })
@@ -20,12 +20,12 @@ export const checkLogIn = () => {
     } catch (error) {
         console.log("err-logout!")
         console.log(error)
-    //   handleLogOut();
+        handleLogOut();
       return false;
     }
   }
   else{return false}
-  };
+  }
   return handleRefreshToken();
 };
 

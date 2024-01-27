@@ -1,5 +1,7 @@
 export const ADD_FILTER = "ADD_FILTER";
 export const REMOVE_FILTER = "REMOVE_FILTER";
+export const ADD_DISPLAY_FILTER = "ADD_DISPLAY_FILTER";
+export const REMOVE_DISPLAY_FILTER = "REMOVE_DISPLAY_FILTER";
 export const CLEAR_FILTER = "CLEAR_FILTER";
 export const CHANGE_URL = "CHANGE_URL";
 export const LOG_IN = "LOG_IN";
@@ -9,18 +11,27 @@ export const SET_REFRESH_TOKEN = "SET_REFRESHTOKEN_TOKEN";
 export const SET_USER_NAME = "SET_USER_NAME";
 export const SET_USER_PROFILE = "SET_USER_PROFILE";
 
-export const addFilter = (filterTitle,filterType,filterValue) => ({
+export const addFilter = (filterType,filterValue) => ({
   type: ADD_FILTER,
   payload: {
-    filterTitle: filterTitle,
     filterType: filterType,
-    filterName: filterValue
+    filterValue: filterValue
   },
 });
 
 export const removeFilter = (filterType) => ({
   type: REMOVE_FILTER,
   payload: filterType,
+});
+
+export const addDisplayFilter = (filterTitle,filterType) => ({
+  type: ADD_DISPLAY_FILTER,
+  payload: {filterTitle : filterTitle, filterType : filterType}
+});
+
+export const removeDisplayFilter = (filterTitle,filterType) => ({
+  type: REMOVE_DISPLAY_FILTER,
+  payload: {filterTitle : filterTitle, filterType : filterType}
 });
 
 export const clearFilter = (filterName) => ({

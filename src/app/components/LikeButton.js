@@ -16,7 +16,7 @@ import { isLogIn } from "../helper/helper";
 const heartImg = "images/heart.png";
 const heartFillImg = "images/heartfill.png";
 
-const LikeButton = ({ eventId }) => {
+const LikeButton = ({ eventId ,currentLiking = false}) => {
   const router = useRouter();
   const accessToken = useSelector((state) => state.accessToken);
 
@@ -56,7 +56,7 @@ const LikeButton = ({ eventId }) => {
     }
   };
 
-  const [isLiked, setisLiked] = useState(false);
+  const [isLiked, setisLiked] = useState(currentLiking);
 
   return (
     <LikeButtonFrame onClick={(event) => handleClick(event, isLiked)}>

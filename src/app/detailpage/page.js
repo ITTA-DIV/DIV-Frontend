@@ -9,7 +9,7 @@ import ic_coin from "images/ic_coin.png"
 import ic_pin from "images/ic_pin.png"
 import ic_blackdoublearrow from "images/ic_blackdoublearrow.png"
 import ic_backbutton from "images/ic_backbutton.png"
-import autherimg from "images/autherimg.png"
+// import autherimg from "images/autherimg.png"
 import ic_speechbubble from "images/ic_speechbubble.png"
 import CommentPanel from "./CommentPanel";
 import { useRouter,useSearchParams } from 'next/navigation';
@@ -23,14 +23,17 @@ const DetailPage = () => {
 
   const timedata = `${dataOrigin.eventApplyStartDate} ~ ${dataOrigin.eventApplyEndDate}`
   const deadlinedata = `${dataOrigin.eventStartDate} ~ ${dataOrigin.eventEndData}`
-  const pricedata = dataOrigin.price
-  const placedata = dataOrigin.address
+  const pricedata = dataOrigin.price;
+  const placedata = dataOrigin.address;
   const title = dataOrigin.title;
   const categorydata = dataOrigin.categoryName;
-  const profilename = dataOrigin.host
-  const wrotedate = "Jun 19, 2019"
+  const profilename = dataOrigin.host;
+  const wrotedate = dataOrigin.eventApplyStartDate;
+  const thumb = dataOrigin.thumbnail;
+  const autherimg = dataOrigin.hostProfile;
   const [content, setcontent] = useState("")
-  const eventsubtitle = "밀라노에서 온 재홍, 런던으로 간 수지,경주에서 온 소영. 이방인 3인이 이야기하는 낯선 경험들."
+  const eventsubtitle = dataOrigin.title;
+  const applyLink = dataOrigin.link;
 
   const commentCount = 7;
   const [isPanelOn, setisPanelOn] = useState(false);
@@ -59,7 +62,8 @@ const DetailPage = () => {
     <Header></Header>
     <PageSection>
     <Frame>
-    <BackgroundImg></BackgroundImg>
+    <BackgroundImg src = {"images/Category5.jpg"}></BackgroundImg>
+    <Foreground></Foreground>
     <PosterSection>
       <PosterInfoSection>
         <Title>{title}</Title>
@@ -93,7 +97,7 @@ const DetailPage = () => {
             <CategoryDetail>{placedata}</CategoryDetail>
           </CategoryFrame>
         </CategoryFrameList>
-        <ApplyButton>
+        <ApplyButton onClick={() => window.open(applyLink)}>
           <ApplyButtonText>신청하기</ApplyButtonText>
           <ApplyButtonArrow src = {ic_blackdoublearrow}></ApplyButtonArrow>
         </ApplyButton>
@@ -113,7 +117,8 @@ const DetailPage = () => {
           <AutherProfileDate>{wrotedate}</AutherProfileDate>
         </AutherProfileTextFrame>
       </AutherProfileFrame>
-      <Content>{content}</Content>
+      {/* <Content>{content}</Content> */}
+      <Thumbcontent src = {thumb}></Thumbcontent>
       </TextPanelFrame>
       {isPanelOn &&
       <CommentPanel event_id={eventId}></CommentPanel>
@@ -157,13 +162,28 @@ width: 100%;
 height: 100%;
 display: flex;
 flex-direction: row;
+border-style: solid;
+  border-width: 9px;
+  border-radius: 60px;
+  border-color: #3BC1C6;
+  overflow: hidden;
 `;
 
-const BackgroundImg = styled.div`
+const BackgroundImg = styled.img`
 position: absolute;
-width: 100%;
+width: 50%;
 height: 100%;
-background-color: black;
+object-fit: cover;
+/* background-color: black; */
+`;
+
+const Foreground = styled.div`
+position: absolute;
+width: 50%;
+height: 80%;
+bottom: 0;
+background: linear-gradient(180deg, rgba(59, 193, 198, 0.00) 38.91%, rgba(59, 193, 198, 0.60) 73.78%, #3BC1C6 96.7%);
+/* background-color: black; */
 `;
 
 const PosterSection = styled.div`
@@ -337,6 +357,10 @@ width: 54px;
 height: 54px;
 border-radius: 54px;
 object-fit: cover;
+border-style: solid;
+  border-width: 2px;
+  border-radius: 60px;
+  border-color: #3BC1C6;
 `;
 
 const AutherProfileTextFrame = styled.div`
@@ -371,7 +395,7 @@ color: black;
 const CommentFrame = styled.div`
 position : fixed;
 bottom: 16px;
-right : 18px;
+right : 40px;
 width: 70px;
 height: 72px;
 `;
@@ -410,6 +434,18 @@ height: 20px;
 color: white;
 background-color: black;
 border-radius: 20px;
+`;
+
+const Thumbcontent = styled.img`
+position: relative;
+display: flex;
+margin-top: 50px;
+width: 90%;
+object-fit: fill;
+border-style: solid;
+  border-width: 9px;
+  border-radius: 60px;
+  border-color: #3BC1C6;
 `;
 
 
