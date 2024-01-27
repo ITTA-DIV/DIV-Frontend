@@ -25,10 +25,10 @@ const ProjectPost = ({
 }) => {
   const router = useRouter();
 
-  // if(!(poster_path.includes("https://")))
-  // {
-  //   poster_path =  "images/now1.jpg" ;
-  // } 
+  if(!(poster_path.includes("default")))
+  {
+    poster_path =  "images/now1.jpg" ;
+  } 
 
   return (
     <Motion.div
