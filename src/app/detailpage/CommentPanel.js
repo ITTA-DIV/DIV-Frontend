@@ -22,7 +22,7 @@ const CommentPanel = ({event_id}) => {
     //         autherName : "Lion",
     //         wroteDate : "11:10 AM"
     //     }
-    // ]
+    // ]ㄴ
 
     const [comments, setcomments] = useState([
       {
@@ -35,7 +35,7 @@ const CommentPanel = ({event_id}) => {
 
       {
           isMine : false,
-          message : "투자에 관심있으신 분들은 참여하면 좋을것 같네요~!",
+          message : "준비물이 따로 있을까요?",
           autherProfilePic : "images/AutherProfile1.png",
           autherName : "Lion",
           wroteDate : "11:10 AM"

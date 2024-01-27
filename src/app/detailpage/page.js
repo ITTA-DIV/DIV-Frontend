@@ -1,7 +1,6 @@
 "use client"
 import styled from "styled-components";
 import Header from "../components/Header";
-import LoginButton from "../components/LoginButton";
 import React,{useState,useEffect} from "react";
 import ic_clock from "images/ic_clock.png"
 import ic_form from "images/ic_form.png"
@@ -9,8 +8,8 @@ import ic_coin from "images/ic_coin.png"
 import ic_pin from "images/ic_pin.png"
 import ic_blackdoublearrow from "images/ic_blackdoublearrow.png"
 import ic_backbutton from "images/ic_backbutton.png"
-// import autherimg from "images/autherimg.png"
 import ic_speechbubble from "images/ic_speechbubble.png"
+// import autherimg from "images/autherimg.png"
 import CommentPanel from "./CommentPanel";
 import { useRouter,useSearchParams } from 'next/navigation';
 import { checkLogIn } from "../helper/helper";
@@ -99,7 +98,7 @@ const DetailPage = () => {
         </CategoryFrameList>
         <ApplyButton onClick={() => window.open(applyLink)}>
           <ApplyButtonText>신청하기</ApplyButtonText>
-          <ApplyButtonArrow src = {ic_blackdoublearrow}></ApplyButtonArrow>
+          <ApplyButtonArrow src = {"images/ic_blackdoublearrow.png"}></ApplyButtonArrow>
         </ApplyButton>
       </PosterInfoSection>
     </PosterSection>
@@ -125,7 +124,7 @@ const DetailPage = () => {
       }
       <CommentFrame>
         <CommentButtonFrame onClick={() => setisPanelOn((prev) => !prev)}>
-          <CommentButtonIc src = {ic_speechbubble}></CommentButtonIc>
+          <CommentButtonIc src = {"images/ic_speechbubble.png"}></CommentButtonIc>
         </CommentButtonFrame>
         <CommentButtonCounter>{commentCount}</CommentButtonCounter>
       </CommentFrame>
