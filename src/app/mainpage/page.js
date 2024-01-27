@@ -5,29 +5,27 @@ import Category from "@/app/components/Category";
 import SectionRow from "@/app/components/SectionRow";
 import { events } from "@/app/API";
 import Header from "../components/Header";
-import { RefObject, useCallback, useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { checkLogIn } from "../helper/helper";
+import LoaderPage from "../loaderpage/page";
 
 const MainPage = () => {
   const [dataOrigin, setData] = useState([]);
   const [user, setUser] = useState([]);
   const [profile, setProfile] = useState([]);
-  const categoryName = ["마감임박 행사들", "무료 행사들", "할인 행사들"];
-  const categorySubName = [
-    "담앗콘이 엄선하여 분류한 카테고리들을 살펴보세요",
-    "담앗콘이 엄선하여 분류한 카테고리들을 살펴보세요",
-    "담앗콘이 엄선하여 분류한 카테고리들을 살펴보세요",
-  ];
+  const categoryName = ["마감임박 행사들","무료 행사들","할인 행사들"];
+  const categorySubName = ["담앗콘이 엄선하여 분류한 카테고리들을 살펴보세요","담앗콘이 엄선하여 분류한 카테고리들을 살펴보세요","담앗콘이 엄선하여 분류한 카테고리들을 살펴보세요"];
 
-  const containerRef = useRef();
+  const [isLoading, setIsLoading] = useState(true); // Add loading state
+
   useEffect(() => {
-    checkLogIn();
-  }, []);
+  checkLogIn();
+  }, [])
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API}/api/v1/event`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API}/api/v1/event`,{
         method: "GET",
         headers: {
           "Content-Type": "application/json; charset=utf-8",
@@ -37,13 +35,14 @@ const MainPage = () => {
       return result;
     };
 
-    fetchData().then((res) => setData(res.data));
+    fetchData().then((res) => setData(res.data)).then(setIsLoading(false)); // Mark loading as false when done);
   }, []);
 
 
-
   return (
-      <OuterFrame ref={containerRef}>
+    <>
+    {isLoading ? <LoaderPage></LoaderPage> :
+        <OuterFrame>
         <Header></Header>
         <PageSection>
           <Frame>
@@ -64,6 +63,8 @@ const MainPage = () => {
           </Frame>
         </PageSection>
       </OuterFrame>
+    } 
+    </>
   );
 };
 
