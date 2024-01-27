@@ -5,96 +5,40 @@ import ProjectPost from "@/app/components/ProjectPost";
 import FilterModal from "@/app/components/FilterModal";
 import { events } from "@/app/API";
 import { useSelector } from "react-redux";
-import React, { useState, useEffect } from "react";
+import React, { useState,useEffect } from "react";
 import Header from "../components/Header";
 import { clearFilter } from "../actions/Actions";
 import { useDispatch } from "react-redux";
-import axios  from "axios";
-
 const SearchPage = () => {
-  const [dataOrigin, setData] = useState({ content: [] });
+
   const bannerImg = "images/SearchBanner.png";
+
   const dispatch = useDispatch();
+
   const tempdata = events.results.dedlines;
-  const [resultNum, setresultNum] = useState(0);
+  const resultNum = 12;
   const currentFilters = useSelector((state) => state.currentFilters);
-  const currentDisplayFilters = useSelector(
-    (state) => state.currentDisplayFilters
-  );
 
   const [isModal, setisModal] = useState(false);
 
-  function objectToQueryString(obj) {
-    const keys = Object.keys(obj);
-    const keyValuePairs = keys.map((key) => {
-      return encodeURIComponent(key) + "=" + encodeURIComponent(obj[key]);
-    });
-    return keyValuePairs.join("&");
-  }
-
   useEffect(() => {
-    return () => {
+    return () =>{
       dispatch(clearFilter());
-    };
+    }
   }, []);
 
-  useEffect(() => {
-    const handleSearch = async () => {
-      console.log(currentFilters);
-      try {
-        // await fetch(`${process.env.NEXT_PUBLIC_API}/api/v1/event/search`, {
-        //   method: "POST",
-        //   headers: {
-        //     "Content-Type": "application/json",
-        //   },
-        //   body: {keywords: "TSOM"},
-        // })
-        // .then((res)=>res.json())
-        // .then((res)=>console.log(res))
-        // .then((res) => setresultNum(res.data.totalElements))
-        // .then((res) => setData(res.data));
-        await axios.get(`${process.env.NEXT_PUBLIC_API}/api/v1/event/search`, {
-            keywords: "TSOM",
-          })
-          .then((res) => console.log(res))
-          .then((res) => setresultNum(res.data.totalElements))
-          .then((res) => setData(res.data));
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    handleSearch();
-  }, [currentFilters]);
 
   return (
     <OuterFrame>
-      <Header></Header>
-      <PageSection>
-        <Frame>
-          <Banner>
-            <BannerImage src={bannerImg}></BannerImage>
-            <BannerText>{resultNum}개의 공모전이 발견되었어요!</BannerText>
-          </Banner>
-          <ResultGrid>
-            {dataOrigin.content.map((eventinfo, index) => {
-              return (
-                <ProjectPost
-                  key={index}
-                  title={eventinfo.title}
-                  category={eventinfo.category_name}
-                  date={eventinfo.eventDateTimeString}
-                  deadline={eventinfo.remainingDays}
-                  poster_path={eventinfo.thumbnail}
-                  eventId={eventinfo.id}
-                ></ProjectPost>
-              );
-            })}
-          </ResultGrid>
-          <SearchBarOuterFrame>
-            <SearchBarBackgroundSquare></SearchBarBackgroundSquare>
-            <SearchBarFrame>
-              <FiltersFrame>
-              {tempdata.map((eventinfo, index) => {
+    <Header></Header>
+    <PageSection>
+    <Frame>
+      <Banner>
+        <BannerImage src = {bannerImg}></BannerImage>
+        <BannerText>{resultNum}개의 공모전이 발견되었어요!</BannerText>
+      </Banner>
+      <ResultGrid>
+        {tempdata.map((eventinfo, index) => {
           return (
             <ProjectPost
               key={index}
@@ -106,15 +50,23 @@ const SearchPage = () => {
             ></ProjectPost>
           );
         })}
-              </FiltersFrame>
-              <FilterSettingButton onClick={() => setisModal(true)}>
-                <FilterSettingButtonText>필터 선택</FilterSettingButtonText>
-              </FilterSettingButton>
-            </SearchBarFrame>
-          </SearchBarOuterFrame>
-          {isModal && <FilterModal setisModal={setisModal}></FilterModal>}
-        </Frame>
-      </PageSection>
+      </ResultGrid>
+      <SearchBarOuterFrame>
+        <SearchBarBackgroundSquare></SearchBarBackgroundSquare>
+        <SearchBarFrame>
+          <FiltersFrame>
+            {currentFilters.map((filterName, index) => {
+              return <Filter key={index} title={filterName}></Filter>;
+            })}
+          </FiltersFrame>
+          <FilterSettingButton onClick={() => setisModal(true)}>
+            <FilterSettingButtonText>필터 선택</FilterSettingButtonText>
+          </FilterSettingButton>
+        </SearchBarFrame>
+      </SearchBarOuterFrame>
+      {isModal && <FilterModal setisModal={setisModal}></FilterModal>}
+    </Frame>
+    </PageSection>
     </OuterFrame>
   );
 };
@@ -123,7 +75,6 @@ const PageSection = styled.div`
   position: relative;
   display: flex;
   width: 97.75%;
-  height: 93vh;
   border-radius: 30px 30px 0px 0px;
   background-color: white;
   overflow: hidden;

@@ -16,9 +16,9 @@ const MyPage = () => {
   const ic_arrow_black = "images/ic_arrow_black.png"
   const [userName,setuserName] = useState("");
   const [userProfile,setuserProfile] = useState("");
-  const [interests, setinterests] = useState([])
   const [heartEvents, setheartEvents] = useState([])
   const rounter = useRouter();
+  const interests = ["IT","디자인","박람회","공모전"];
 
   useEffect(() => {
     const loadUserProfile = async () =>{

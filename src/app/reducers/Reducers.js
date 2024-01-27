@@ -13,20 +13,7 @@ import {
   REMOVE_DISPLAY_FILTER
 } from "../actions/Actions";
 const initialState = {
-  currentFilters: {
-    keywords: null,
-    startDate: null,
-    endDate: null,
-    address: null,
-    type: null,
-    location: null,
-    price: null,
-    category_name: null,
-    free: null,
-    notFree: null,
-    minPrice: null,
-    maxPrice: null,
-  },
+  currentFilters: [],
   currentDisplayFilters : [],
   currentUrl: "/mainpage",
   isLogIn: false,
@@ -41,50 +28,20 @@ const rootReducer = (state = initialState, action) => {
     case ADD_FILTER:
       return {
         ...state,
-        currentFilters: {
-          ...state.currentFilters,
-          [action.payload.filterType]: action.payload.filterValue,
-        },
+        currentFilters: [...state.currentFilters, action.payload],
       };
     case REMOVE_FILTER:
       return {
         ...state,
-        currentFilters: {
-          ...state.currentFilters,
-          [action.payload]: null ,
-        },
+        currentFilters: state.currentFilters.filter(
+          (filterValue) => filterValue !== action.payload
+        ),
       };
-      case REMOVE_DISPLAY_FILTER:
-        return {
-          ...state,
-          currentDisplayFilters: state.currentDisplayFilters.filter(
-            (filterValue) => filterValue !== action.payload
-          ),
-        };
-        case ADD_DISPLAY_FILTER:
-          return {
-            ...state,
-            currentDisplayFilters: [...state.currentDisplayFilters, action.payload],
-          };
     case CLEAR_FILTER:
       return {
-        ...state,
-        currentFilters: {
-          keywords: null,
-          startDate: null,
-          endDate: null,
-          address: null,
-          type: null,
-          location: null,
-          price: null,
-          category_name: null,
-          free: null,
-          notFree: null,
-          minPrice: null,
-          maxPrice: null,
-        },
-        currentDisplayFilters: []
+        currentFilters: [],
       };
+
     case CHANGE_URL:
       return {
         ...state,

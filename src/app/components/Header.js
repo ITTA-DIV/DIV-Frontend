@@ -49,8 +49,7 @@ const Header = () => {
   const handleSubmit = (event) =>{
     if(event.key === "Enter") {
       router.push("/searchpage")
-      dispatch(addFilter("keywords",inputText))
-      dispatch(addDisplayFilter("검색어 : "+inputText,"keywords"))
+      dispatch(addFilter("검색어 : "+inputText))
     }
   }
 

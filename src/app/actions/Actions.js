@@ -11,27 +11,14 @@ export const SET_REFRESH_TOKEN = "SET_REFRESHTOKEN_TOKEN";
 export const SET_USER_NAME = "SET_USER_NAME";
 export const SET_USER_PROFILE = "SET_USER_PROFILE";
 
-export const addFilter = (filterType,filterValue) => ({
+export const addFilter = (filterName) => ({
   type: ADD_FILTER,
-  payload: {
-    filterType: filterType,
-    filterValue: filterValue
-  },
+  payload: filterName,
 });
 
-export const removeFilter = (filterType) => ({
+export const removeFilter = (filterName) => ({
   type: REMOVE_FILTER,
-  payload: filterType,
-});
-
-export const addDisplayFilter = (filterTitle,filterType) => ({
-  type: ADD_DISPLAY_FILTER,
-  payload: {filterTitle : filterTitle, filterType : filterType}
-});
-
-export const removeDisplayFilter = (filterTitle,filterType) => ({
-  type: REMOVE_DISPLAY_FILTER,
-  payload: {filterTitle : filterTitle, filterType : filterType}
+  payload: filterName,
 });
 
 export const clearFilter = (filterName) => ({
