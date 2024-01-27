@@ -34,7 +34,7 @@ const LikeButton = ({ eventId ,currentLiking = false}) => {
               method: "POST",
               headers: {
                 "Content-Type": "application/json; charset=utf-8",
-                Authorization: `Bearer ${accessToken}`,
+                Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
               },
             }
           );
@@ -45,7 +45,7 @@ const LikeButton = ({ eventId ,currentLiking = false}) => {
               method: "DELETE",
               headers: {
                 "Content-Type": "application/json; charset=utf-8",
-                Authorization: `Bearer ${accessToken}`,
+                Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
               },
             }
           );
